@@ -60,7 +60,7 @@ const Carousel: React.FC<PropType> = (props) => {
                   alt={image.title}
                   width={650}
                   height={312}
-                  className="w-full object-cover rounded-lg"
+                  className="w-full h-full rounded-lg"
                   priority
                   quality={100}
                 />
