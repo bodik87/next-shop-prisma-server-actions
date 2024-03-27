@@ -1,6 +1,6 @@
-import { CATEGORIES, PRODUCTS } from '@/data'
+import React, { Suspense } from 'react'
 import Link from 'next/link'
-import React from 'react'
+import { CATEGORIES, PRODUCTS } from '@/data'
 
 type PageSearchParams = {
   id: string
@@ -8,6 +8,10 @@ type PageSearchParams = {
 
 type Props = {
   searchParams: PageSearchParams
+}
+
+function SearchBarFallback() {
+  return <div className='wrapper'>Loading...</div>
 }
 
 export default function Category({ searchParams }: Props) {
@@ -19,22 +23,24 @@ export default function Category({ searchParams }: Props) {
 
   return (
     <section className=''>
-      <div className="wrapper py-5">
-        <h2 className='font-bold'>Category id: <span>{id}</span></h2>
+      <Suspense fallback={<SearchBarFallback />}>
+        <div className="wrapper py-5">
+          <h2 className='font-bold'>Category id: <span>{id}</span></h2>
 
-      </div>
+        </div>
 
-      <div className="wrapper py-5">
-        {PRODUCTS.filter(product => product.id === Number(id)).map(
-          (el) =>
-            <Link
-              key={el.id}
-              href={{ pathname: categoryHref + el.slug, query: { id: el.id } }}
-              className='bg-white p-5 rounded-xl w-56 shadow'>
-              {el.title} {el.price}
-            </Link>
-        )}
-      </div>
+        <div className="wrapper py-5">
+          {PRODUCTS.filter(product => product.id === Number(id)).map(
+            (el) =>
+              <Link
+                key={el.id}
+                href={{ pathname: categoryHref + el.slug, query: { id: el.id } }}
+                className='bg-white p-5 rounded-xl w-56 shadow'>
+                {el.title} {el.price}
+              </Link>
+          )}
+        </div>
+      </Suspense>
     </section>
   )
 }
