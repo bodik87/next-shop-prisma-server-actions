@@ -1,9 +1,13 @@
 import React from 'react'
-import { Search, ShoppingBag } from "lucide-react"
+import { Search, ShoppingBag, User } from "lucide-react"
 import Link from 'next/link'
 import CategoriesMenu from './categories-menu'
 
 type Props = {}
+
+const obj = {
+ id: 1, title: "Bo"
+}
 
 export default function Header({ }: Props) {
  return (
@@ -23,6 +27,10 @@ export default function Header({ }: Props) {
     </div>
 
     <div className='flex items-center gap-4'>
+     <Link
+      href={{ pathname: '/user', query: { data: JSON.stringify(obj) } }}>
+      <User />
+     </Link>
      <ShoppingBag />
     </div>
    </div>
