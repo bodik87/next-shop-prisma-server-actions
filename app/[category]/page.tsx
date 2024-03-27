@@ -34,7 +34,7 @@ export default function Category({ searchParams }: Props) {
             (el) =>
               <Link
                 key={el.id}
-                href={{ pathname: categoryHref + el.slug, query: { id: el.id } }}
+                href={{ pathname: categoryHref + el.slug + el.code, query: { id: el.id } }}
                 className='bg-white p-5 rounded-xl w-56 shadow'>
                 {el.title} {el.price}
               </Link>
