@@ -1,11 +1,8 @@
 import Promo from "@/components/promo";
 import { getItems } from "@/lib/items";
-import { Item } from "@prisma/client";
 
 export default async function Home() {
   const { items = [] } = await getItems()
-
-  console.log(items);
 
   return (
     <section className="pb-4">
@@ -17,7 +14,7 @@ export default async function Home() {
         {items?.map(
           (el, i) =>
             <div key={el.id}>
-              <span>{i + 1}. {el.title}</span>
+              <span>{i + 1}. {el.title} {el.price}</span>
               {/* <DeleteForm id={el.id} /> */}
             </div>
         )}
