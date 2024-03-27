@@ -14,7 +14,7 @@ export default function Promo({ }: Props) {
 
    <div className='md:w-1/2 rounded-xl'>
     <Image
-     src={"/1.png"}
+     src={"/2.png"}
      alt={"Img"}
      width={408}
      height={300}
