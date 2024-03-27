@@ -10,7 +10,7 @@ type Props = {
 }
 
 function SearchBarFallback() {
-  return <div className='wrapper'>Loading...</div>
+  return <div className='wrapper py-5'>Loading...</div>
 }
 
 export default function Product({ searchParams }: Props) {
