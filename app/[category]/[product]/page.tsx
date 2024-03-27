@@ -22,12 +22,11 @@ export default function Product({ searchParams }: Props) {
 
   return (
     <section className=''>
-      <div className="wrapper py-5">
-        <Suspense fallback={<SearchBarFallback />}>
+      <Suspense fallback={<SearchBarFallback />}>
+        <div className="wrapper py-5">
           <h2 className='font-bold'>{product.title}</h2>
-        </Suspense>
-
-      </div>
+        </div>
+      </Suspense>
     </section>
   )
 }
