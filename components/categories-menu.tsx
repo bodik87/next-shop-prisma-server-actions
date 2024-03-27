@@ -8,7 +8,7 @@ import { CATEGORIES } from '@/data'
 
 export default function CategoriesMenu() {
   return (
-    <div className="z-10">
+    <div className="z-20">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex gap-2 w-full justify-center rounded-md bg-black px-3 py-2 font-medium text-white hover:bg-black/80 focus:outline-none">
