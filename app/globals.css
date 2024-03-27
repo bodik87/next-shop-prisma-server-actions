@@ -45,7 +45,7 @@ input[type="search"]::-webkit-search-results-decoration {
 /* Embla */
 
 .embla {
-  @apply w-full m-auto;
+  @apply w-full;
   --slide-height: 19rem;
   --slide-spacing: 1rem;
   --slide-size: 100%;

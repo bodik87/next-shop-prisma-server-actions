@@ -12,7 +12,7 @@ export default function Promo({ }: Props) {
   <div className='flex flex-col md:flex-row gap-3'>
    <Carousel options={OPTIONS} />
 
-   <div className='md:w-1/2 rounded-xl'>
+   {/* <div className='md:w-1/2 rounded-xl'>
     <Image
      src={"/2.png"}
      alt={"Img"}
@@ -22,7 +22,7 @@ export default function Promo({ }: Props) {
      priority
      quality={100}
     />
-   </div>
+   </div> */}
   </div>
  )
 }
