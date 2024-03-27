@@ -17,8 +17,8 @@ export default function Promo({ }: Props) {
      src={"/2.png"}
      alt={"Img"}
      width={408}
-     height={300}
-     className="w-full rounded-lg"
+     height={100}
+     className=""
      priority
      quality={100}
     />
