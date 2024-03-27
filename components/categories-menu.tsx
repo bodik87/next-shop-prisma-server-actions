@@ -4,6 +4,7 @@ import { Menu, Transition, Disclosure } from '@headlessui/react'
 import { Fragment, JSX, SVGProps } from 'react'
 import { LayoutList, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import { CATEGORIES } from '@/data'
 
 export default function CategoriesMenu() {
   return (
@@ -29,7 +30,10 @@ export default function CategoriesMenu() {
               <Menu.Item>
                 {({ close, active }) => (
                   <Link onClick={close}
-                    href={{ pathname: '/category-1', query: { id: '1' } }}
+                    href={{
+                      pathname: CATEGORIES[0].slug,
+                      query: { id: CATEGORIES[0].id }
+                    }}
                     className={`${active ? 'bg-gray-200 text-black' : 'text-gray-900'
                       } group flex w-full items-center rounded-md px-2 py-2`}>
                     {active ? (
@@ -43,7 +47,7 @@ export default function CategoriesMenu() {
                         aria-hidden="true"
                       />
                     )}
-                    Cat 1
+                    {CATEGORIES[0].title}
                   </Link>
                 )}
               </Menu.Item>
@@ -62,7 +66,10 @@ export default function CategoriesMenu() {
                       <Menu.Item>
                         {({ close, active }) => (
                           <Link onClick={close}
-                            href={{ pathname: '/category-2', query: { id: '2' } }}
+                            href={{
+                              pathname: CATEGORIES[1].slug,
+                              query: { id: CATEGORIES[1].id }
+                            }}
                             className={`${active ? 'bg-gray-200 text-black' : 'text-gray-900'
                               } group flex w-full items-center rounded-md pl-2 pr-4 py-2 whitespace-nowrap`}>
                             {active ? (
@@ -76,7 +83,7 @@ export default function CategoriesMenu() {
                                 aria-hidden="true"
                               />
                             )}
-                            Category with long name
+                            {CATEGORIES[1].title}
                           </Link>
                         )}
                       </Menu.Item>
@@ -89,7 +96,10 @@ export default function CategoriesMenu() {
                 <Menu.Item>
                   {({ close, active }) => (
                     <Link onClick={close}
-                      href={{ pathname: '/category-4', query: { id: '4' } }}
+                      href={{
+                        pathname: CATEGORIES[2].slug,
+                        query: { id: CATEGORIES[2].id }
+                      }}
                       className={`${active ? 'bg-gray-200 text-black' : 'text-gray-900'
                         } group flex w-full items-center rounded-md px-2 py-2`}>
                       {active ? (
@@ -103,7 +113,7 @@ export default function CategoriesMenu() {
                           aria-hidden="true"
                         />
                       )}
-                      Cat 4
+                      {CATEGORIES[2].title}
                     </Link>
                   )}
                 </Menu.Item>
