@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import Link from 'next/link'
 import { CATEGORIES, PRODUCTS } from '@/data'
+import { Home, ChevronRight } from 'lucide-react'
 
 type PageSearchParams = {
   id: string
@@ -25,6 +26,15 @@ export default function Category({ searchParams }: Props) {
     <section className=''>
       <Suspense fallback={<SearchBarFallback />}>
         <div className="wrapper py-5">
+
+          <div className='mb-4 flex gap-2 items-center'>
+            <Link href={`/`}><Home size={20} /></Link>
+            <ChevronRight />
+            <b>{CATEGORIES
+              .filter(category =>
+                category.id === Number(id))[0].title}</b>
+          </div>
+
           <h2 className='font-bold'>Category id: <span>{id}</span></h2>
 
         </div>
@@ -43,6 +53,6 @@ export default function Category({ searchParams }: Props) {
           </div>
         </div>
       </Suspense>
-    </section>
+    </section >
   )
 }
