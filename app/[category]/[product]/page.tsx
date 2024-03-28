@@ -38,17 +38,18 @@ export default function Product({ searchParams }: Props) {
       <Suspense fallback={<SearchBarFallback />}>
         <div className="wrapper py-5">
 
-          <div className='mb-4 flex gap-2 items-center'>
-            <Link href={`/`}><Home size={20} /></Link>
-            <ChevronRight />
+          <div className='mb-4 flex gap-2 items-center text-sm'>
+            <Link href={`/`}><Home size={18} className='text-gray-500' /></Link>
+            <ChevronRight size={18} className='text-gray-500' />
             <Link
+              className='text-gray-500'
               href={{ pathname: categoryHref, query: { id: product.categoryId } }}>
               {CATEGORIES
                 .filter(category =>
                   category.id === Number(product.categoryId))[0].title}
             </Link>
-            <ChevronRight />
-            <b>{product.title}</b>
+            <ChevronRight size={18} className='text-gray-500' />
+            <p>{product.title}</p>
           </div>
 
           <h2 className='font-bold text-3xl'>{product.title}</h2>
