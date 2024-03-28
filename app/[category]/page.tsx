@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import Link from 'next/link'
+import Image from "next/image";
 import { CATEGORIES, PRODUCTS } from '@/data'
 import { Home, ChevronRight } from 'lucide-react'
 
@@ -32,7 +33,8 @@ export default function Category({ searchParams }: Props) {
             <ChevronRight size={18} className='text-gray-500' />
             <p>{CATEGORIES
               .filter(category =>
-                category.id === Number(id))[0].title}</p>
+                category.id === Number(id))[0].title}
+            </p>
           </div>
 
           <h2 className='font-bold'>Category id: <span>{id}</span></h2>
@@ -40,15 +42,26 @@ export default function Category({ searchParams }: Props) {
         </div>
 
         <div className="wrapper py-5">
-          <div className='flex gap-3'>
+          <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-3'>
             {PRODUCTS.filter(product => product.categoryId === Number(id)).map(
               (el) =>
-                <Link
-                  key={el.id}
-                  href={{ pathname: categoryHref + el.slug + el.code, query: { id: el.id } }}
-                  className='bg-white p-5 rounded-xl w-56 shadow'>
-                  {el.title} {el.price}
-                </Link>
+                <div key={el.id} className='w-full'>
+                  <Image
+                    src={"/1.jpg"}
+                    alt={"Img"}
+                    width={408}
+                    height={100}
+                    className="w-full object-contain rounded-lg"
+                    priority
+                    quality={100}
+                  />
+                  <Link
+                    href={{ pathname: categoryHref + el.slug + el.code, query: { id: el.id } }}
+                    className='bg-white p-5 rounded-xl w-56 shadow'>
+                    {el.title} {el.price}
+                  </Link>
+                </div>
+
             )}
           </div>
         </div>

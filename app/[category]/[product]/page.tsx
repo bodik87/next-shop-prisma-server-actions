@@ -3,6 +3,7 @@ import { CATEGORIES, PRODUCTS } from '@/data'
 import Link from 'next/link'
 import { Home, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 type PageSearchParams = {
   id: string
@@ -54,6 +55,17 @@ export default function Product({ searchParams }: Props) {
 
           <h2 className='font-bold text-3xl'>{product.title}</h2>
           <p>EAN: {product.code}</p>
+
+          <Image
+            src={"/1.jpg"}
+            alt={"Img"}
+            width={408}
+            height={100}
+            className="w-full object-contain rounded-lg"
+            priority
+            quality={100}
+          />
+
           <p>Price: {product.price}</p>
 
           {product.sizeOptions.length > 0 &&
@@ -81,16 +93,26 @@ export default function Product({ searchParams }: Props) {
             <>
               <b className='block mt-5'>Analogues</b>
               <div className='flex gap-3'>{product.analogues.map(analogue => (
-                <Link
-                  key={analogue.id}
-                  href={{
-                    pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
-                      id: currentProduct(analogue).id
-                    }
-                  }}
-                  className="p-2 rounded-md bg-gray-200">
-                  {currentProduct(analogue).title}
-                </Link>
+                <div key={analogue.id} className='w-full'>
+                  <Link
+                    href={{
+                      pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
+                        id: currentProduct(analogue).id
+                      }
+                    }}
+                    className="p-2 rounded-md bg-gray-200">
+                    {currentProduct(analogue).title}
+                  </Link>
+                  <Image
+                    src={"/1.jpg"}
+                    alt={"Img"}
+                    width={408}
+                    height={100}
+                    className="w-full object-contain rounded-lg"
+                    priority
+                    quality={100}
+                  />
+                </div>
               ))}
               </div>
             </>
