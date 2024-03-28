@@ -51,45 +51,49 @@ export default function Product({ searchParams }: Props) {
             <b>{product.title}</b>
           </div>
 
-          <h2 className='font-bold'>{product.title}</h2>
+          <h2 className='font-bold text-3xl'>{product.title}</h2>
           <p>EAN: {product.code}</p>
           <p>Price: {product.price}</p>
 
-          {product.sizeOptions.length > 0 && <>
-            <b>Sizes</b>
-            <div className='flex gap-3'>{product.sizeOptions.map(size => (
-              <Link
-                key={size.id}
-                href={{
-                  pathname: categoryHref + currentProduct(size).slug + currentProduct(size).code, query: {
-                    id: currentProduct(size).id
-                  }
-                }}
-                className={cn("p-2 rounded-md",
-                  product.id === size.productId ? "bg-red-300" : "bg-blue-300"
-                )}>
-                {size.size}
-              </Link>
-            ))}
-            </div>
-          </>}
+          {product.sizeOptions.length > 0 &&
+            <>
+              <b className='block mt-5'>Sizes</b>
+              <div className='flex gap-3'>{product.sizeOptions.map(size => (
+                <Link
+                  key={size.id}
+                  href={{
+                    pathname: categoryHref + currentProduct(size).slug + currentProduct(size).code, query: {
+                      id: currentProduct(size).id
+                    }
+                  }}
+                  className={cn("p-2 rounded-md",
+                    product.id === size.productId ? "bg-red-300" : "bg-blue-300"
+                  )}>
+                  {size.size}
+                </Link>
+              ))}
+              </div>
+            </>
+          }
 
-          {product.analogues.length > 0 && <>
-            <b>Analogues</b>
-            <div className='flex gap-3'>{product.analogues.map(analogue => (
-              <Link
-                key={analogue.id}
-                href={{
-                  pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
-                    id: currentProduct(analogue).id
-                  }
-                }}
-                className="p-2 rounded-md bg-gray-200">
-                {currentProduct(analogue).title}
-              </Link>
-            ))}
-            </div>
-          </>}
+          {product.analogues.length > 0 &&
+            <>
+              <b className='block mt-5'>Analogues</b>
+              <div className='flex gap-3'>{product.analogues.map(analogue => (
+                <Link
+                  key={analogue.id}
+                  href={{
+                    pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
+                      id: currentProduct(analogue).id
+                    }
+                  }}
+                  className="p-2 rounded-md bg-gray-200">
+                  {currentProduct(analogue).title}
+                </Link>
+              ))}
+              </div>
+            </>
+          }
         </div>
       </Suspense>
     </section>
