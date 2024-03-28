@@ -26,6 +26,7 @@ export const PRODUCTS = [
     oldPrice: 170,
     categoryId: 1,
     sizeOptions: [],
+    analogues: [],
   },
   {
     id: 2,
@@ -40,6 +41,7 @@ export const PRODUCTS = [
       { id: 2, productId: 3, size: "5l" },
       { id: 3, productId: 4, size: "10l" },
     ],
+    analogues: [{ id: 1, productId: 1 }],
   },
   {
     id: 3,
@@ -54,6 +56,7 @@ export const PRODUCTS = [
       { id: 2, productId: 3, size: "5l" },
       { id: 3, productId: 4, size: "10l" },
     ],
+    analogues: [{ id: 1, productId: 1 }],
   },
   {
     id: 4,
@@ -68,5 +71,6 @@ export const PRODUCTS = [
       { id: 2, productId: 3, size: "5l" },
       { id: 3, productId: 4, size: "10l" },
     ],
+    analogues: [{ id: 1, productId: 1 }],
   },
 ];

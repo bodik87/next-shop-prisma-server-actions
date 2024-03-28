@@ -27,10 +27,10 @@ export default function Product({ searchParams }: Props) {
     .filter(category =>
       category.id === Number(product.categoryId))[0].slug}/`
 
-  const currentProduct = (size: any) => {
+  const currentProduct = (parametr: any) => {
     return PRODUCTS
       .filter(product =>
-        product.id === Number(size.productId))[0]
+        product.id === Number(parametr.productId))[0]
   }
 
   return (
@@ -69,6 +69,23 @@ export default function Product({ searchParams }: Props) {
                   product.id === size.productId ? "bg-red-300" : "bg-blue-300"
                 )}>
                 {size.size}
+              </Link>
+            ))}
+            </div>
+          </>}
+
+          {product.analogues.length > 0 && <>
+            <b>Analogues</b>
+            <div className='flex gap-3'>{product.analogues.map(analogue => (
+              <Link
+                key={analogue.id}
+                href={{
+                  pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
+                    id: currentProduct(analogue).id
+                  }
+                }}
+                className="p-2 rounded-md bg-gray-200">
+                {currentProduct(analogue).title}
               </Link>
             ))}
             </div>
