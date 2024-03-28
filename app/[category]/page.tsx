@@ -30,15 +30,17 @@ export default function Category({ searchParams }: Props) {
         </div>
 
         <div className="wrapper py-5">
-          {PRODUCTS.filter(product => product.id === Number(id)).map(
-            (el) =>
-              <Link
-                key={el.id}
-                href={{ pathname: categoryHref + el.slug + el.code, query: { id: el.id } }}
-                className='bg-white p-5 rounded-xl w-56 shadow'>
-                {el.title} {el.price}
-              </Link>
-          )}
+          <div className='flex gap-3'>
+            {PRODUCTS.filter(product => product.categoryId === Number(id)).map(
+              (el) =>
+                <Link
+                  key={el.id}
+                  href={{ pathname: categoryHref + el.slug + el.code, query: { id: el.id } }}
+                  className='bg-white p-5 rounded-xl w-56 shadow'>
+                  {el.title} {el.price}
+                </Link>
+            )}
+          </div>
         </div>
       </Suspense>
     </section>

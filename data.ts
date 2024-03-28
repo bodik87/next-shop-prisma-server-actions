@@ -25,6 +25,7 @@ export const PRODUCTS = [
     price: 150.5,
     oldPrice: 170,
     categoryId: 1,
+    sizeOptions: [],
   },
   {
     id: 2,
@@ -34,5 +35,38 @@ export const PRODUCTS = [
     price: 39,
     oldPrice: 45,
     categoryId: 2,
+    sizeOptions: [
+      { id: 1, productId: 2, size: "1l" },
+      { id: 2, productId: 3, size: "5l" },
+      { id: 3, productId: 4, size: "10l" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Raundup 5l",
+    slug: "/Raundup-5l-",
+    code: "59333333",
+    price: 140,
+    oldPrice: 140,
+    categoryId: 2,
+    sizeOptions: [
+      { id: 1, productId: 2, size: "1l" },
+      { id: 2, productId: 3, size: "5l" },
+      { id: 3, productId: 4, size: "10l" },
+    ],
+  },
+  {
+    id: 4,
+    title: "Raundup 10l",
+    slug: "/Raundup-10l-",
+    code: "5933333435353",
+    price: 350,
+    oldPrice: 350,
+    categoryId: 2,
+    sizeOptions: [
+      { id: 1, productId: 2, size: "1l" },
+      { id: 2, productId: 3, size: "5l" },
+      { id: 3, productId: 4, size: "10l" },
+    ],
   },
 ];
