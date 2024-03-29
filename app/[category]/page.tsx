@@ -38,7 +38,10 @@ export default function Category({ searchParams }: Props) {
             </b>
           </div>
 
-          <h2 className='mt-4 font-bold text-2xl'>Category id: <span>{id}</span></h2>
+          <h2 className='mt-4 font-bold text-2xl'>
+            {CATEGORIES.filter(category =>
+              category.id === Number(id))[0].title}
+          </h2>
 
         </div>
 
