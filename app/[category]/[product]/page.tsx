@@ -85,7 +85,7 @@ export default function Product({ searchParams }: Props) {
                           }
                         }}
                         className={cn("w-full flex items-center justify-center p-2 rounded-md",
-                          product.id === size.productId ? "bg-blue-400 font-bold" : "bg-blue-200"
+                          product.id === size.productId ? "bg-orange-400 font-bold" : "bg-gray-200"
                         )}>
                         {size.size}
                       </Link>
@@ -100,7 +100,7 @@ export default function Product({ searchParams }: Props) {
               <Counter price={product.price} />
 
               <button
-                className="mt-2 w-full bg-green-500 flex items-center justify-center p-2 rounded-md">
+                className="mt-2 w-full bg-green-600 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-md">
                 Add to cart
               </button>
 
@@ -126,7 +126,7 @@ export default function Product({ searchParams }: Props) {
                           id: currentProduct(analogue).id
                         }
                       }}
-                      className="flex flex-col h-full bg-white p-5 rounded-xl w-full shadow">
+                      className="flex flex-col h-full bg-white p-2 md:p-5 rounded-xl w-full shadow">
                       <Image
                         src={"/1.jpg"}
                         alt={"Img"}

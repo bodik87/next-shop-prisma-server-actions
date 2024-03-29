@@ -16,6 +16,11 @@ export const CATEGORIES = [
   },
 ];
 
+export const POPULAR_PRODUCTS = [
+  { id: 1, productId: 2 },
+  { id: 1, productId: 4 },
+];
+
 export const PRODUCTS = [
   {
     id: 1,
