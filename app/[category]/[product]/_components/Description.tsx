@@ -13,7 +13,7 @@ export default function Description({ description }: Props) {
   <Disclosure>
    {({ open }) => (
     <>
-     <Disclosure.Button className="flex w-full justify-between rounded-lg bg-gray-100 px-4 py-2 text-left font-medium hover:bg-gray-200 focus:outline-none">
+     <Disclosure.Button className="flex w-full justify-between rounded-lg bg-gray-100 p-4 text-left font-medium hover:bg-gray-200 focus:outline-none">
       <span>Description</span>
       <ChevronDown className={`${open && "rotate-180"}`} />
      </Disclosure.Button>
