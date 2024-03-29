@@ -17,7 +17,7 @@ export default function Counter({ price }: Props) {
     <button
      disabled={count === 1}
      onClick={() => setCount(count - 1)}
-     className='p-4 font-bold'>
+     className='py-4 px-6 font-bold'>
      -
     </button>
 
@@ -27,11 +27,11 @@ export default function Counter({ price }: Props) {
      step={1}
      value={count}
      onChange={(e: any) => setCount(e.target.value)}
-     className='w-1/2 text-center font-bold px-10 border-x-2 flex items-center justify-center' />
+     className='w-full text-center font-bold px-10 border-x-2 flex items-center justify-center' />
 
     <button
      onClick={() => setCount(count + 1)}
-     className='p-4 font-bold'>
+     className='py-4 px-6 font-bold'>
      +
     </button>
    </div>
