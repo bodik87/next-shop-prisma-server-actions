@@ -100,7 +100,7 @@ export default function Product({ searchParams }: Props) {
               <Counter price={product.price} />
 
               <button
-                className="mt-2 w-full bg-green-600 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-md">
+                className="mt-4 w-full bg-green-600 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-xl">
                 Add to cart
               </button>
 
