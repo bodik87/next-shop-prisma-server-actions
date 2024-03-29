@@ -100,11 +100,12 @@ export default function Product({ searchParams }: Props) {
             </div>
 
             <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-5 rounded-xl '>
-              <Counter price={product.price} />
+              {product.isAvailable && <Counter price={product.price} />}
 
               <button
-                className="mt-4 w-full bg-green-600 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-xl">
-                Add to cart
+                disabled={!product.isAvailable}
+                className="mt-4 w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-xl">
+                {product.isAvailable ? "Add to cart" : "No product"}
               </button>
 
               <a
