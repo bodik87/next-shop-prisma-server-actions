@@ -5,6 +5,7 @@ import { Home, ChevronRight, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Counter from './_components/Counter'
+import Description from './_components/Description'
 
 type PageSearchParams = {
   id: string
@@ -55,8 +56,8 @@ export default function Product({ searchParams }: Props) {
             <b>{product.title}</b>
           </div>
 
-          <div className='flex flex-col md:flex-row gap-4'>
-            <div className='p-5 w-full md:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8'>
+          <div className='flex flex-col lg:flex-row gap-4'>
+            <div className='p-5 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8'>
               <div className=' flex flex-col md:flex-row gap-4'>
                 <Image
                   src={"/1.jpg"}
@@ -69,14 +70,14 @@ export default function Product({ searchParams }: Props) {
                 />
               </div>
 
-              <div className='min-w-[200px]'>
+              <div className='md:min-w-[300px]'>
                 <h2 className='font-bold text-3xl'>{product.title}</h2>
                 <p>EAN: {product.code}</p>
 
                 {product.sizeOptions.length > 0 &&
                   <>
                     <b className='block mt-5'>Sizes</b>
-                    <div className='mt-2 flex gap-3'>{product.sizeOptions.map(size => (
+                    <div className='mt-2 mb-4 flex gap-3'>{product.sizeOptions.map(size => (
                       <Link
                         key={size.id}
                         href={{
@@ -93,6 +94,8 @@ export default function Product({ searchParams }: Props) {
                     </div>
                   </>
                 }
+
+                <Description description={product.description} />
               </div>
             </div>
 
