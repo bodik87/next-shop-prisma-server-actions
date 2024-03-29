@@ -13,7 +13,7 @@ export default function Counter({ price }: Props) {
    <p>Price: {price} zl/szt</p>
    <p className='mt-2 text-3xl font-bold'>{price * count} zl</p>
 
-   <div className='mt-2 flex justify-between border-2 rounded-xl'>
+   <div className='mt-4 flex justify-between border-2 rounded-xl'>
     <button
      disabled={count === 1}
      onClick={() => setCount(count - 1)}
