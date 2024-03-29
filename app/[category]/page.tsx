@@ -29,7 +29,7 @@ export default function Category({ searchParams }: Props) {
       <Suspense fallback={<SearchBarFallback />}>
         <div className="wrapper py-5">
 
-          <div className='mb-4 flex gap-2 items-center text-sm'>
+          <div className='flex gap-2 items-center text-sm'>
             <Link href={`/`} className='text-gray-500'><Home size={18} className='text-gray-500' /></Link>
             <ChevronRight size={18} className='text-gray-500' />
             <b>{CATEGORIES
@@ -38,11 +38,11 @@ export default function Category({ searchParams }: Props) {
             </b>
           </div>
 
-          <h2 className='font-bold'>Category id: <span>{id}</span></h2>
+          <h2 className='mt-4 font-bold text-2xl'>Category id: <span>{id}</span></h2>
 
         </div>
 
-        <div className="wrapper py-5">
+        <div className="wrapper">
           <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
             {PRODUCTS.filter(product => product.categoryId === Number(id)).map(
               (el) =>
