@@ -1,0 +1,40 @@
+"use client"
+
+import React, { useState } from 'react'
+
+type Props = {
+ price: number
+}
+
+export default function Counter({ price }: Props) {
+ const [count, setCount] = useState(1)
+ return (
+  <>
+   <p>Price: {price} zl/szt</p>
+   <p className='mt-2 text-3xl font-bold'>{price * count} zl</p>
+
+   <div className='mt-2 flex justify-between border rounded-xl'>
+    <button
+     disabled={count === 1}
+     onClick={() => setCount(count - 1)}
+     className='w-1/4 p-4 font-bold flex items-center justify-center'>
+     -
+    </button>
+
+    <input
+     type='number'
+     min={1}
+     step={1}
+     value={count}
+     onChange={(e: any) => setCount(e.target.value)}
+     className='w-2/4 text-center px-10 border-x flex items-center justify-center' />
+
+    <button
+     onClick={() => setCount(count + 1)}
+     className='w-1/4 p-4 font-bold flex items-center justify-center'>
+     +
+    </button>
+   </div>
+  </>
+ )
+}

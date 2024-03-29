@@ -25,6 +25,7 @@ export const PRODUCTS = [
     price: 150.5,
     oldPrice: 170,
     categoryId: 1,
+    isAvailable: true,
     sizeOptions: [],
     analogues: [],
   },
@@ -36,6 +37,7 @@ export const PRODUCTS = [
     price: 39,
     oldPrice: 45,
     categoryId: 2,
+    isAvailable: false,
     sizeOptions: [
       { id: 1, productId: 2, size: "1l" },
       { id: 2, productId: 3, size: "5l" },
@@ -51,6 +53,7 @@ export const PRODUCTS = [
     price: 140,
     oldPrice: 140,
     categoryId: 2,
+    isAvailable: true,
     sizeOptions: [
       { id: 1, productId: 2, size: "1l" },
       { id: 2, productId: 3, size: "5l" },
@@ -66,6 +69,7 @@ export const PRODUCTS = [
     price: 350,
     oldPrice: 350,
     categoryId: 2,
+    isAvailable: true,
     sizeOptions: [
       { id: 1, productId: 2, size: "1l" },
       { id: 2, productId: 3, size: "5l" },

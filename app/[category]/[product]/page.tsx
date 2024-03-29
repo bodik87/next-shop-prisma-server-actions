@@ -1,9 +1,10 @@
 import React, { Suspense } from 'react'
 import { CATEGORIES, PRODUCTS } from '@/data'
 import Link from 'next/link'
-import { Home, ChevronRight } from 'lucide-react'
+import { Home, ChevronRight, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import Counter from './_components/Counter'
 
 type PageSearchParams = {
   id: string
@@ -39,6 +40,7 @@ export default function Product({ searchParams }: Props) {
       <Suspense fallback={<SearchBarFallback />}>
         <div className="wrapper py-5">
 
+          {/* Breadcrumbs */}
           <div className='mb-4 flex gap-2 items-center text-sm'>
             <Link href={`/`}><Home size={18} className='text-gray-500' /></Link>
             <ChevronRight size={18} className='text-gray-500' />
@@ -50,70 +52,97 @@ export default function Product({ searchParams }: Props) {
                   category.id === Number(product.categoryId))[0].title}
             </Link>
             <ChevronRight size={18} className='text-gray-500' />
-            <p>{product.title}</p>
+            <b>{product.title}</b>
           </div>
 
-          <h2 className='font-bold text-3xl'>{product.title}</h2>
-          <p>EAN: {product.code}</p>
-
-          <Image
-            src={"/1.jpg"}
-            alt={"Img"}
-            width={408}
-            height={100}
-            className="w-full object-contain rounded-lg"
-            priority
-            quality={100}
-          />
-
-          <p>Price: {product.price}</p>
-
-          {product.sizeOptions.length > 0 &&
-            <>
-              <b className='block mt-5'>Sizes</b>
-              <div className='flex gap-3'>{product.sizeOptions.map(size => (
-                <Link
-                  key={size.id}
-                  href={{
-                    pathname: categoryHref + currentProduct(size).slug + currentProduct(size).code, query: {
-                      id: currentProduct(size).id
-                    }
-                  }}
-                  className={cn("p-2 rounded-md",
-                    product.id === size.productId ? "bg-red-300" : "bg-blue-300"
-                  )}>
-                  {size.size}
-                </Link>
-              ))}
+          <div className='flex flex-col md:flex-row gap-4'>
+            <div className='p-5 w-full md:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8'>
+              <div className=' flex flex-col md:flex-row gap-4'>
+                <Image
+                  src={"/1.jpg"}
+                  alt={"Img"}
+                  width={408}
+                  height={100}
+                  className="w-full object-contain rounded-lg"
+                  priority
+                  quality={100}
+                />
               </div>
-            </>
-          }
+
+              <div className='min-w-[200px]'>
+                <h2 className='font-bold text-3xl'>{product.title}</h2>
+                <p>EAN: {product.code}</p>
+
+                {product.sizeOptions.length > 0 &&
+                  <>
+                    <b className='block mt-5'>Sizes</b>
+                    <div className='mt-2 flex gap-3'>{product.sizeOptions.map(size => (
+                      <Link
+                        key={size.id}
+                        href={{
+                          pathname: categoryHref + currentProduct(size).slug + currentProduct(size).code, query: {
+                            id: currentProduct(size).id
+                          }
+                        }}
+                        className={cn("w-full flex items-center justify-center p-2 rounded-md",
+                          product.id === size.productId ? "bg-blue-400 font-bold" : "bg-blue-200"
+                        )}>
+                        {size.size}
+                      </Link>
+                    ))}
+                    </div>
+                  </>
+                }
+              </div>
+            </div>
+
+            <div className='w-full md:w-1/4 bg-white h-fit p-5 rounded-xl '>
+              <Counter price={product.price} />
+
+              <button
+                className="mt-2 w-full bg-green-500 flex items-center justify-center p-2 rounded-md">
+                Add to cart
+              </button>
+
+              <a
+                className='mt-4 flex gap-2 items-center'
+                href="tel:+380672785349">
+                <Phone /> <span>+38-067-278-53-49</span>
+              </a>
+
+            </div>
+          </div>
+
 
           {product.analogues.length > 0 &&
             <>
               <b className='block mt-5'>Analogues</b>
-              <div className='flex gap-3'>{product.analogues.map(analogue => (
-                <div key={analogue.id} className='w-full'>
-                  <Link
-                    href={{
-                      pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
-                        id: currentProduct(analogue).id
-                      }
-                    }}
-                    className="p-2 rounded-md bg-gray-200">
-                    {currentProduct(analogue).title}
-                  </Link>
-                  <Image
-                    src={"/1.jpg"}
-                    alt={"Img"}
-                    width={408}
-                    height={100}
-                    className="w-full object-contain rounded-lg"
-                    priority
-                    quality={100}
-                  />
-                </div>
-              ))}
+              <div className='mt-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
+                {product.analogues.map(analogue => (
+                  <div key={analogue.id} className='w-full'>
+                    <Link
+                      href={{
+                        pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
+                          id: currentProduct(analogue).id
+                        }
+                      }}
+                      className="flex flex-col h-full bg-white p-5 rounded-xl w-full shadow">
+                      <Image
+                        src={"/1.jpg"}
+                        alt={"Img"}
+                        width={408}
+                        height={100}
+                        className="w-full object-contain rounded-lg"
+                        priority
+                        quality={100}
+                      />
+
+                      <h3 className='mt-3 font-bold'>{currentProduct(analogue).title}</h3>
+                      <p className='font-bold'>{currentProduct(analogue).price} zl</p>
+                    </Link>
+
+                  </div>
+                ))}
               </div>
             </>
           }

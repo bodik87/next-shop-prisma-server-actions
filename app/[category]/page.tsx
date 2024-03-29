@@ -2,7 +2,8 @@ import React, { Suspense } from 'react'
 import Link from 'next/link'
 import Image from "next/image";
 import { CATEGORIES, PRODUCTS } from '@/data'
-import { Home, ChevronRight } from 'lucide-react'
+import { Home, ChevronRight, ShoppingBag } from 'lucide-react'
+import { cn } from '@/lib/utils';
 
 type PageSearchParams = {
   id: string
@@ -31,10 +32,10 @@ export default function Category({ searchParams }: Props) {
           <div className='mb-4 flex gap-2 items-center text-sm'>
             <Link href={`/`} className='text-gray-500'><Home size={18} className='text-gray-500' /></Link>
             <ChevronRight size={18} className='text-gray-500' />
-            <p>{CATEGORIES
+            <b>{CATEGORIES
               .filter(category =>
                 category.id === Number(id))[0].title}
-            </p>
+            </b>
           </div>
 
           <h2 className='font-bold'>Category id: <span>{id}</span></h2>
@@ -42,23 +43,38 @@ export default function Category({ searchParams }: Props) {
         </div>
 
         <div className="wrapper py-5">
-          <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-3'>
+          <div className='grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
             {PRODUCTS.filter(product => product.categoryId === Number(id)).map(
               (el) =>
                 <div key={el.id} className='w-full'>
-                  <Image
-                    src={"/1.jpg"}
-                    alt={"Img"}
-                    width={408}
-                    height={100}
-                    className="w-full object-contain rounded-lg"
-                    priority
-                    quality={100}
-                  />
                   <Link
                     href={{ pathname: categoryHref + el.slug + el.code, query: { id: el.id } }}
-                    className='bg-white p-5 rounded-xl w-56 shadow'>
-                    {el.title} {el.price}
+                    className='flex flex-col h-full bg-white p-5 rounded-xl w-full shadow'>
+
+                    <Image
+                      src={"/1.jpg"}
+                      alt={"Img"}
+                      width={408}
+                      height={100}
+                      className="mb-2 w-full object-contain rounded-lg"
+                      priority
+                      quality={100}
+                    />
+
+                    <h3 className='font-bold text-xl'>{el.title}</h3>
+                    <div className='mt-2 flex justify-between items-center'>
+                      <p className='font-bold text-xl'>{el.price} zl</p>
+
+                      <button
+                        className={cn('bg-green-500 p-2.5 rounded-xl font-bold text-lg',
+                          el.isAvailable ? "bg-green-300" : "bg-gray-200",
+                          el.isAvailable && "bg-red-400"
+                        )}>
+                        {el.isAvailable ? <ShoppingBag /> : "No"}
+                      </button>
+                    </div>
+
+
                   </Link>
                 </div>
 
