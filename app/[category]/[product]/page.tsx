@@ -38,7 +38,7 @@ export default function Product({ searchParams }: Props) {
   return (
     <section className=''>
       <Suspense fallback={<SearchBarFallback />}>
-        <div className="wrapper py-5">
+        <div className="wrapper">
 
           {/* Breadcrumbs */}
           <div className='mb-4 flex gap-2 items-center text-sm'>
@@ -96,7 +96,7 @@ export default function Product({ searchParams }: Props) {
               </div>
             </div>
 
-            <div className='w-full md:w-1/4 bg-white h-fit p-5 rounded-xl '>
+            <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-5 rounded-xl '>
               <Counter price={product.price} />
 
               <button
