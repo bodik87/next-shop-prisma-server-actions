@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import NextTopLoader from 'nextjs-toploader';
 import { Inter } from "next/font/google";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -20,13 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Suspense fallback={<div>Loading page...</div>}>
-          <main className="min-h-dvh flex flex-col">
-            <Header />
-            {children}
-            <Footer />
-          </main>
-        </Suspense>
+        <NextTopLoader color="#16A34A" height={3} />
+        <main className="min-h-dvh flex flex-col">
+          <Header />
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   );
