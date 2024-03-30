@@ -48,7 +48,7 @@ export default function Product({ searchParams }: Props) {
             title={product.title}
           />
 
-          <div className='mt-4 flex flex-col lg:flex-row gap-4'>
+          <section className='mt-4 flex flex-col lg:flex-row gap-4'>
             <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8'>
               <div className=' flex flex-col md:flex-row gap-4'>
                 <Image
@@ -112,7 +112,7 @@ export default function Product({ searchParams }: Props) {
               </a>
 
             </div>
-          </div>
+          </section>
 
 
           {product.analogues.length > 0 &&
