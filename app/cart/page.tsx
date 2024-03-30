@@ -32,14 +32,13 @@ export default function Cart({ }: Props) {
       <div className="wrapper pb-5">
         <h2>Cart</h2>
 
-        <section className='mt-4 flex flex-col lg:flex-row'>
-          <div className='p-4 w-full lg:w-2/3 bg-white rounded-t-lg lg:rounded-r-none lg:rounded-l-xl flex flex-col items-start md:flex-row gap-8'>
+        <section className='mt-4 flex flex-col lg:flex-row rounded-lg shadow-md'>
+          <div className='p-4 w-full lg:w-2/3 bg-white rounded-t-lg lg:rounded-r-none lg:rounded-l-lg flex flex-col items-start md:flex-row gap-8'>
             <div className='w-full'>
-              <b>Products</b>
 
-              <div className='mt-4 flex flex-col gap-3'>
-                {order.products.map((product, i) => (
-                  <div key={product.id} className='flex flex-col md:flex-row gap-4 items-center border-b pb-3 last:border-none'>
+              <div className='flex flex-col gap-3'>
+                {order.products.map((product, index) => (
+                  <div key={product.id} className='flex flex-col md:flex-row gap-4 items-center border-b pb-3 last:pb-0 last:border-none'>
                     <div className='w-full flex gap-4 md:items-center'>
                       <Image
                         src={currentProduct(product.id).images[0]}
@@ -52,8 +51,8 @@ export default function Cart({ }: Props) {
                       />
 
                       <div className='w-full'>
-                        <b>{currentProduct(product.id).title}</b>
-                        <p>{currentProduct(product.id).price} zl</p>
+                        <b>{index + 1}. {currentProduct(product.id).title}</b>
+                        <p>{currentProduct(product.id).price} zl/szt</p>
                       </div>
                     </div>
 
@@ -99,7 +98,7 @@ export default function Cart({ }: Props) {
 
           </div>
 
-          <div className='w-full lg:w-1/3 min-w-[300px] bg-gray-100 p-4 rounded-b-lg lg:rounded-r-xl lg:rounded-l-none'>
+          <div className='w-full lg:w-1/3 min-w-[300px] bg-gray-100 p-4 rounded-b-lg lg:rounded-r-lg lg:rounded-l-none'>
             <div className='w-full flex items-center justify-between'>
               <b>Summary</b>
               <span>{order.products.length} items</span>

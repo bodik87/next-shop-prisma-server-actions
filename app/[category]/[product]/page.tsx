@@ -49,7 +49,7 @@ export default function Product({ searchParams }: Props) {
           />
 
           <section className='mt-4 flex flex-col lg:flex-row gap-4'>
-            <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8'>
+            <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8 shadow-md'>
               <div className=' flex flex-col md:flex-row gap-4'>
                 <Image
                   src={product.images[0]}
@@ -91,7 +91,7 @@ export default function Product({ searchParams }: Props) {
               </div>
             </div>
 
-            <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-4 rounded-xl '>
+            <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-4 rounded-xl shadow-md'>
               {product.isAvailable && <Counter price={product.price} />}
 
               <button
@@ -127,7 +127,7 @@ export default function Product({ searchParams }: Props) {
                           id: currentProduct(analogue).id
                         }
                       }}
-                      className="flex flex-col h-full bg-white p-2 md:p-4 rounded-xl w-full shadow">
+                      className="flex flex-col h-full bg-white p-2 md:p-4 rounded-xl w-full shadow-md">
                       <Image
                         src={currentProduct(analogue).images[0]}
                         alt={"Img"}
