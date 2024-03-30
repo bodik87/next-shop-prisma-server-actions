@@ -100,7 +100,7 @@ export default function Cart({ }: Props) {
 
           <div className='w-full lg:w-1/3 min-w-[300px] bg-gray-100 p-4 rounded-b-lg lg:rounded-r-lg lg:rounded-l-none'>
             <div className='w-full flex items-center justify-between'>
-              <b>Summary</b>
+              <b className='text-lg'>Summary</b>
               <span>{order.products.length} items</span>
             </div>
 
