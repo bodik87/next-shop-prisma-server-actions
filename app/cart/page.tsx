@@ -70,6 +70,10 @@ export default function Cart({ }: Props) {
                           value={order.products.filter(el => el.id === product.id)[0].quantity}
                           min={1}
                           step={1}
+                          onPaste={(e) => {
+                            e.preventDefault()
+                            return false
+                          }}
                           // value={count}
                           // onChange={(e: any) => setCount(e.target.value)}
                           className='w-full text-center font-bold border-x-2 flex items-center justify-center' />

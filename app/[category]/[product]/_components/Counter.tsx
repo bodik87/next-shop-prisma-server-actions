@@ -26,6 +26,10 @@ export default function Counter({ price }: Props) {
      min={1}
      step={1}
      value={count}
+     onPaste={(e) => {
+      e.preventDefault()
+      return false
+     }}
      onChange={(e: any) => setCount(e.target.value.replace(/\D/g, ''))}
      className='w-full text-center font-bold px-10 border-x-2 flex items-center justify-center' />
 
