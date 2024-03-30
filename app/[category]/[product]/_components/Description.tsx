@@ -10,12 +10,12 @@ type Props = {
 
 export default function Description({ description }: Props) {
  return (
-  <Disclosure>
+  <Disclosure defaultOpen>
    {({ open }) => (
     <>
-     <Disclosure.Button className="flex w-full justify-between rounded-lg bg-gray-100 p-4 text-left font-medium hover:bg-gray-200 focus:outline-none">
-      <span>Description</span>
-      <ChevronDown className={`${open && "rotate-180"}`} />
+     <Disclosure.Button className="mt-4 flex w-full justify-between rounded-lg pt-4 text-left font-medium focus:outline-none group">
+      <b>Description</b>
+      <ChevronDown className={`${open && "rotate-180"} group-hover:stroke-green-600`} />
      </Disclosure.Button>
 
      <Disclosure.Panel className="mt-2">

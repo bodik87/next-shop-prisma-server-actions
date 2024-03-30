@@ -21,6 +21,10 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
 }
 
+h2 {
+  @apply mt-4 font-bold text-2xl;
+}
+
 ::-webkit-scrollbar {
   @apply w-3;
 }

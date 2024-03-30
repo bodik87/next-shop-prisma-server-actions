@@ -64,7 +64,7 @@ export default function Product({ searchParams }: Props) {
 
               <div className='md:min-w-[300px]'>
                 <h2 className='font-bold text-3xl'>{product.title}</h2>
-                <p>EAN: {product.code}</p>
+                <small>EAN: {product.code}</small>
 
                 {product.sizeOptions.length > 0 &&
                   <>
@@ -78,7 +78,7 @@ export default function Product({ searchParams }: Props) {
                           }
                         }}
                         className={cn("w-full flex items-center justify-center p-2 rounded-md",
-                          product.id === size.productId ? "bg-orange-400 font-bold" : "bg-gray-200"
+                          product.id === size.productId ? "bg-green-600 text-white font-bold" : "bg-gray-200"
                         )}>
                         {size.size}
                       </Link>
@@ -103,11 +103,11 @@ export default function Product({ searchParams }: Props) {
               </button>
 
               <a
-                className='mt-4 flex gap-2 items-center bg-gray-100 w-fit p-3 rounded-lg'
+                className='mt-4 flex gap-4 justify-center items-center bg-gray-100 w-full p-3 rounded-lg'
                 href="tel:+380672785349">
                 <Phone
                   size={18}
-                  className='fill-blue-600 stroke-blue-600' />
+                  className='fill-green-600 stroke-green-600' />
                 <span>+38-067-278-53-49</span>
               </a>
 

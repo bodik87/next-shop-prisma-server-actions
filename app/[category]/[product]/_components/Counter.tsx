@@ -10,7 +10,7 @@ export default function Counter({ price }: Props) {
  const [count, setCount] = useState(1)
  return (
   <>
-   <p>Price: {price} zl/szt</p>
+   <b>Price: {price} zl/szt</b>
    <p className='mt-2 text-3xl font-bold'>{price * count} zl</p>
 
    <div className='mt-4 flex justify-between border-2 rounded-xl'>

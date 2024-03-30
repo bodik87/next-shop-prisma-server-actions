@@ -26,12 +26,14 @@ export default function Header({ }: Props) {
      <Search className='absolute right-3 top-1/2 -translate-y-1/2' />
     </div>
 
-    <div className='flex items-center gap-4'>
+    <div className='flex items-center gap-6'>
      <Link
       href={{ pathname: '/user', query: { data: JSON.stringify(obj) } }}>
       <User />
      </Link>
-     <ShoppingBag />
+     <Link href={'/cart'}>
+      <ShoppingBag />
+     </Link>
     </div>
    </div>
 
