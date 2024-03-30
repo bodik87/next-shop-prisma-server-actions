@@ -45,7 +45,7 @@ export default function Cart({ }: Props) {
                         alt={"Img"}
                         width={408}
                         height={100}
-                        className="w-32 h-32 object-contain bg-green-500 rounded-lg"
+                        className="w-32 h-32 object-contain bg-gray-200 rounded-lg"
                         priority
                         quality={100}
                       />
@@ -58,7 +58,7 @@ export default function Cart({ }: Props) {
 
                     <div className='w-full flex gap-4 items-center justify-between'>
 
-                      <div className='max-w-52 w-full flex justify-between border-2 rounded-xl'>
+                      <div className='max-w-44 w-full flex justify-between border-2 rounded-xl'>
                         <button
                           // onClick={() => setCount(count - 1)}
                           className='h-12 w-12 aspect-square font-bold'>

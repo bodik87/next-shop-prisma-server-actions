@@ -53,7 +53,7 @@ export default function Category({ searchParams }: Props) {
                       alt={"Img"}
                       width={408}
                       height={100}
-                      className={cn("w-full object-contain rounded-lg",
+                      className={cn("w-full object-contain bg-gray-200 rounded-lg",
                         !el.isAvailable && "opacity-50")}
                       priority
                       quality={100}

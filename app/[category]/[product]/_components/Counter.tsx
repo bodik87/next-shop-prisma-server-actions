@@ -26,7 +26,7 @@ export default function Counter({ price }: Props) {
      min={1}
      step={1}
      value={count}
-     onChange={(e: any) => setCount(e.target.value)}
+     onChange={(e: any) => setCount(e.target.value.replace(/\D/g, ''))}
      className='w-full text-center font-bold px-10 border-x-2 flex items-center justify-center' />
 
     <button

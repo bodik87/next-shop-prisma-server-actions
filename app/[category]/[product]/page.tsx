@@ -56,7 +56,7 @@ export default function Product({ searchParams }: Props) {
                   alt={"Img"}
                   width={408}
                   height={100}
-                  className="w-full object-contain rounded-lg"
+                  className="w-full object-contain bg-gray-200 rounded-lg"
                   priority
                   quality={100}
                 />
@@ -133,7 +133,7 @@ export default function Product({ searchParams }: Props) {
                         alt={"Img"}
                         width={408}
                         height={100}
-                        className="w-full object-contain rounded-lg"
+                        className="w-full object-contain bg-gray-200 rounded-lg"
                         priority
                         quality={100}
                       />

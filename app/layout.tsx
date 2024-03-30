@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextTopLoader color="#16A34A" height={3} showSpinner={false} />
+        <NextTopLoader color="#16A34A" height={3} showSpinner={false} shadow={false} />
         <main className="min-h-dvh flex flex-col">
           <Header />
           {children}
