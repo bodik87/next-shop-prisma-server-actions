@@ -29,7 +29,7 @@ export default function Category({ searchParams }: Props) {
     <section className=''>
       <Suspense fallback={<SearchBarFallback />}>
 
-        <div className="wrapper py-5">
+        <div className="wrapper pt-5 pb-3">
           <CategoryBreadcrumbs id={id} />
 
           <h2 className='mt-4 font-bold text-2xl'>
@@ -48,9 +48,8 @@ export default function Category({ searchParams }: Props) {
                     className={cn("flex flex-col h-full  p-3 rounded-xl w-full shadow relative",
                       el.isAvailable ? "bg-white" : "bg-gray-100")}
                   >
-
                     <Image
-                      src={"/1.jpg"}
+                      src={el.images[0]}
                       alt={"Img"}
                       width={408}
                       height={100}

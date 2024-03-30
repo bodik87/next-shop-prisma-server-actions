@@ -30,6 +30,7 @@ export const PRODUCTS = [
     price: 150.5,
     oldPrice: 170,
     categoryId: 1,
+    images: ["/products/2.jpg"],
     description: "Description Ambrossio 1l",
     isAvailable: true,
     sizeOptions: [],
@@ -43,6 +44,7 @@ export const PRODUCTS = [
     price: 39,
     oldPrice: 45,
     categoryId: 2,
+    images: ["/products/1.jpg"],
     description: "Description Raundup 1l",
     isAvailable: false,
     sizeOptions: [
@@ -60,6 +62,7 @@ export const PRODUCTS = [
     price: 140,
     oldPrice: 140,
     categoryId: 2,
+    images: ["/products/2.jpg"],
     description: "Description Raundup 5l",
     isAvailable: true,
     sizeOptions: [
@@ -77,6 +80,7 @@ export const PRODUCTS = [
     price: 350,
     oldPrice: 350,
     categoryId: 2,
+    images: ["/products/1.jpg"],
     description: "Description Raundup 10l",
     isAvailable: true,
     sizeOptions: [

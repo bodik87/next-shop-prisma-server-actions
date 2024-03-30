@@ -52,7 +52,7 @@ export default function Product({ searchParams }: Props) {
             <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8'>
               <div className=' flex flex-col md:flex-row gap-4'>
                 <Image
-                  src={"/1.jpg"}
+                  src={product.images[0]}
                   alt={"Img"}
                   width={408}
                   height={100}
@@ -129,7 +129,7 @@ export default function Product({ searchParams }: Props) {
                       }}
                       className="flex flex-col h-full bg-white p-2 md:p-4 rounded-xl w-full shadow">
                       <Image
-                        src={"/1.jpg"}
+                        src={currentProduct(analogue).images[0]}
                         alt={"Img"}
                         width={408}
                         height={100}
