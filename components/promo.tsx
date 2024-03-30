@@ -9,7 +9,7 @@ const OPTIONS: EmblaOptionsType = { loop: true }
 
 export default function Promo({ }: Props) {
  return (
-  <div className='flex flex-col md:flex-row gap-3'>
+  <div className='mt-4 flex flex-col md:flex-row gap-3'>
    <Carousel options={OPTIONS} />
 
    <div className='md:w-1/2 rounded-xl'>

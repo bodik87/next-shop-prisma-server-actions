@@ -60,7 +60,7 @@ export default function Category({ searchParams }: Props) {
                       quality={100}
                     />
 
-                    {!el.isAvailable && <div className='absolute top-3 left-3 p-4 rounded-tl-lg rounded-br-lg w-fit bg-red-500 text-white text-sm font-semibold'>
+                    {!el.isAvailable && <div className='absolute top-3 left-3 p-4 rounded-tl-lg rounded-br-lg w-fit bg-black text-white text-sm font-semibold'>
                       Is not available
                     </div>}
 

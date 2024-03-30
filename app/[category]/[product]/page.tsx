@@ -91,19 +91,24 @@ export default function Product({ searchParams }: Props) {
               </div>
             </div>
 
-            <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-5 rounded-xl '>
+            <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-4 rounded-xl '>
               {product.isAvailable && <Counter price={product.price} />}
 
               <button
                 disabled={!product.isAvailable}
-                className="mt-4 w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-xl">
+                className={cn("w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
+                  product.isAvailable && "mt-4")}
+              >
                 {product.isAvailable ? "Add to cart" : "No product"}
               </button>
 
               <a
-                className='mt-4 flex gap-2 items-center'
+                className='mt-4 flex gap-2 items-center bg-gray-100 w-fit p-3 rounded-lg'
                 href="tel:+380672785349">
-                <Phone /> <span>+38-067-278-53-49</span>
+                <Phone
+                  size={18}
+                  className='fill-blue-600 stroke-blue-600' />
+                <span>+38-067-278-53-49</span>
               </a>
 
             </div>

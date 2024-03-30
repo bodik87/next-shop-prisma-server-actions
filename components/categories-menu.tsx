@@ -16,6 +16,8 @@ export default function CategoriesMenu() {
             Categories
           </Menu.Button>
         </div>
+
+
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
@@ -25,7 +27,7 @@ export default function CategoriesMenu() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute left-0 mt-2 w-fit min-w-56 origin-top-left rounded-md bg-black text-white shadow-lg ring-1 ring-black/5 focus:outline-none overflow-hidden">
+          <Menu.Items className="absolute z-50 left-0 mt-2 w-fit min-w-56 origin-top-left rounded-md bg-black text-white shadow-xl ring-1 ring-black/5 focus:outline-none overflow-hidden">
             <Menu.Item>
               {({ close, active }) => (
                 <Link onClick={close}

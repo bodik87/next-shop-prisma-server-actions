@@ -14,7 +14,7 @@ export default function Header({ }: Props) {
   <header>
    <div className="wrapper py-4 flex items-center justify-between gap-4">
     <Link href={`/`} className='flex items-center gap-4'>
-     <b>Shop</b>
+     <b className='text-xl whitespace-nowrap'>Shop</b>
     </Link>
 
     <div className='relative max-w-md w-full'>
