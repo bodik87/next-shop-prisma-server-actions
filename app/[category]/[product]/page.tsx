@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Counter from './_components/Counter'
 import Description from './_components/Description'
+import ProductBreadcrumbs from './_components/ProductBreadcrumbs'
 
 type PageSearchParams = {
   id: string
@@ -39,25 +40,16 @@ export default function Product({ searchParams }: Props) {
   return (
     <section className=''>
       <Suspense fallback={<SearchBarFallback />}>
-        <div className="wrapper">
+        <div className="wrapper py-5">
 
-          {/* Breadcrumbs */}
-          <div className='mb-4 flex gap-2 items-center text-sm'>
-            <Link href={`/`}><Home size={18} className='text-gray-500' /></Link>
-            <ChevronRight size={18} className='text-gray-500' />
-            <Link
-              className='text-gray-500'
-              href={{ pathname: categoryHref, query: { id: product.categoryId } }}>
-              {CATEGORIES
-                .filter(category =>
-                  category.id === Number(product.categoryId))[0].title}
-            </Link>
-            <ChevronRight size={18} className='text-gray-500' />
-            <b>{product.title}</b>
-          </div>
+          <ProductBreadcrumbs
+            categoryHref={categoryHref}
+            categoryId={product.categoryId}
+            title={product.title}
+          />
 
-          <div className='flex flex-col lg:flex-row gap-4'>
-            <div className='p-5 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8'>
+          <div className='mt-4 flex flex-col lg:flex-row gap-4'>
+            <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8'>
               <div className=' flex flex-col md:flex-row gap-4'>
                 <Image
                   src={"/1.jpg"}
@@ -130,7 +122,7 @@ export default function Product({ searchParams }: Props) {
                           id: currentProduct(analogue).id
                         }
                       }}
-                      className="flex flex-col h-full bg-white p-2 md:p-5 rounded-xl w-full shadow">
+                      className="flex flex-col h-full bg-white p-2 md:p-4 rounded-xl w-full shadow">
                       <Image
                         src={"/1.jpg"}
                         alt={"Img"}

@@ -35,7 +35,7 @@ export default function Header({ }: Props) {
     </div>
    </div>
 
-   <div className='wrapper pb-4 flex items-center gap-4'>
+   <div className='wrapper flex items-center gap-4'>
     <CategoriesMenu />
    </div>
   </header>

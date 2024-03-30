@@ -25,104 +25,102 @@ export default function CategoriesMenu() {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute left-0 mt-2 w-fit min-w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-            <div className="px-1 py-1">
-              <Menu.Item>
-                {({ close, active }) => (
-                  <Link onClick={close}
-                    href={{
-                      pathname: CATEGORIES[0].slug,
-                      query: { id: CATEGORIES[0].id }
-                    }}
-                    className={`${active ? 'bg-gray-200 text-black' : 'text-gray-900'
-                      } group flex w-full items-center rounded-md px-2 py-2`}>
-                    {active ? (
-                      <DuplicateActiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <DuplicateInactiveIcon
-                        className="mr-2 h-5 w-5"
-                        aria-hidden="true"
-                      />
-                    )}
-                    {CATEGORIES[0].title}
-                  </Link>
-                )}
-              </Menu.Item>
-            </div>
-
-            <div className="px-1">
-              <Disclosure>
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button className="flex w-full justify-between rounded-lg bg-gray-100 px-4 py-2 text-left font-medium hover:bg-gray-200 focus:outline-none">
-                      <span>SubCat</span>
-                      <ChevronDown className={`${open && "rotate-180"}`} />
-
-                    </Disclosure.Button>
-                    <Disclosure.Panel className="pl-2 pb-2 pt-1 text-gray-500">
-                      <Menu.Item>
-                        {({ close, active }) => (
-                          <Link onClick={close}
-                            href={{
-                              pathname: CATEGORIES[1].slug,
-                              query: { id: CATEGORIES[1].id }
-                            }}
-                            className={`${active ? 'bg-gray-200 text-black' : 'text-gray-900'
-                              } group flex w-full items-center rounded-md pl-2 pr-4 py-2 whitespace-nowrap`}>
-                            {active ? (
-                              <DuplicateActiveIcon
-                                className="mr-2 h-5 w-5"
-                                aria-hidden="true"
-                              />
-                            ) : (
-                              <DuplicateInactiveIcon
-                                className="mr-2 h-5 w-5"
-                                aria-hidden="true"
-                              />
-                            )}
-                            {CATEGORIES[1].title}
-                          </Link>
-                        )}
-                      </Menu.Item>
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-
-              <div className="py-1">
-                <Menu.Item>
-                  {({ close, active }) => (
-                    <Link onClick={close}
-                      href={{
-                        pathname: CATEGORIES[2].slug,
-                        query: { id: CATEGORIES[2].id }
-                      }}
-                      className={`${active ? 'bg-gray-200 text-black' : 'text-gray-900'
-                        } group flex w-full items-center rounded-md px-2 py-2`}>
-                      {active ? (
-                        <DuplicateActiveIcon
-                          className="mr-2 h-5 w-5"
-                          aria-hidden="true"
-                        />
-                      ) : (
-                        <DuplicateInactiveIcon
-                          className="mr-2 h-5 w-5"
-                          aria-hidden="true"
-                        />
-                      )}
-                      {CATEGORIES[2].title}
-                    </Link>
+          <Menu.Items className="absolute left-0 mt-2 w-fit min-w-56 origin-top-left rounded-md bg-black text-white shadow-lg ring-1 ring-black/5 focus:outline-none overflow-hidden">
+            <Menu.Item>
+              {({ close, active }) => (
+                <Link onClick={close}
+                  href={{
+                    pathname: CATEGORIES[0].slug,
+                    query: { id: CATEGORIES[0].id }
+                  }}
+                  className={`${active ? 'bg-gray-900' : ''
+                    } group flex w-full items-center p-3 whitespace-nowrap`}>
+                  {active ? (
+                    <DuplicateActiveIcon
+                      className="mr-2 h-5 w-5"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <DuplicateInactiveIcon
+                      className="mr-2 h-5 w-5"
+                      aria-hidden="true"
+                    />
                   )}
-                </Menu.Item>
-              </div>
-            </div>
+                  {CATEGORIES[0].title}
+                </Link>
+              )}
+            </Menu.Item>
+
+            <Disclosure defaultOpen>
+              {({ open }) => (
+                <>
+                  <Disclosure.Button className="flex w-full bg-green-700 p-3 text-left font-medium hover:bg-green-600 focus:outline-none">
+                    <DuplicateActiveIcon
+                      className="mr-2 h-5 w-5"
+                      aria-hidden="true"
+                    />
+                    <span>SubCat</span>
+                    <ChevronDown className={`ml-auto ${open && "rotate-180"}`} />
+
+                  </Disclosure.Button>
+                  <Disclosure.Panel className="bg-green-900">
+                    <Menu.Item>
+                      {({ close, active }) => (
+                        <Link onClick={close}
+                          href={{
+                            pathname: CATEGORIES[1].slug,
+                            query: { id: CATEGORIES[1].id }
+                          }}
+                          className={`${active ? 'bg-green-800' : ''
+                            } group flex w-full items-center p-3 whitespace-nowrap`}>
+                          {active ? (
+                            <DuplicateActiveIcon
+                              className="ml-2 mr-2 h-5 w-5"
+                              aria-hidden="true"
+                            />
+                          ) : (
+                            <DuplicateInactiveIcon
+                              className="ml-2 mr-2 h-5 w-5"
+                              aria-hidden="true"
+                            />
+                          )}
+                          {CATEGORIES[1].title}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  </Disclosure.Panel>
+                </>
+              )}
+            </Disclosure>
+
+            <Menu.Item>
+              {({ close, active }) => (
+                <Link onClick={close}
+                  href={{
+                    pathname: CATEGORIES[2].slug,
+                    query: { id: CATEGORIES[2].id }
+                  }}
+                  className={`${active ? 'bg-gray-900' : ''
+                    } group flex w-full items-center p-3`}>
+                  {active ? (
+                    <DuplicateActiveIcon
+                      className="mr-2 h-5 w-5"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <DuplicateInactiveIcon
+                      className="mr-2 h-5 w-5"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {CATEGORIES[2].title}
+                </Link>
+              )}
+            </Menu.Item>
           </Menu.Items>
         </Transition>
       </Menu>
-    </div>
+    </div >
   )
 }
 
@@ -137,13 +135,13 @@ function DuplicateInactiveIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGE
       <path
         d="M4 4H12V12H4V4Z"
         fill="#EDE9FE"
-        stroke="#A78BFA"
+        stroke="#fff"
         strokeWidth="2"
       />
       <path
         d="M8 8H16V16H8V8Z"
         fill="#EDE9FE"
-        stroke="#A78BFA"
+        stroke="#fff"
         strokeWidth="2"
       />
     </svg>
@@ -160,14 +158,14 @@ function DuplicateActiveIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGEle
     >
       <path
         d="M4 4H12V12H4V4Z"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
+        fill="#fff"
+        stroke="#F87171"
         strokeWidth="2"
       />
       <path
         d="M8 8H16V16H8V8Z"
-        fill="#8B5CF6"
-        stroke="#C4B5FD"
+        fill="#fff"
+        stroke="#F87171"
         strokeWidth="2"
       />
     </svg>
