@@ -1,8 +1,11 @@
+"use client"
+
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import React from 'react'
 import { X } from 'lucide-react';
-import { PRODUCTS } from '@/data';
+import { CATEGORIES, PRODUCTS } from '@/data';
+import Link from 'next/link';
 
 type Props = {}
 
@@ -27,6 +30,10 @@ export default function Cart({ }: Props) {
     return PRODUCTS.filter(product => product.id === id)[0]
   }
 
+  // const categoryHref = `${CATEGORIES
+  //   .filter(category =>
+  //     category.id === Number(product.categoryId))[0].slug}/`
+
   return (
     <section>
       <div className="wrapper pb-5">
@@ -40,15 +47,25 @@ export default function Cart({ }: Props) {
                 {order.products.map((product, index) => (
                   <div key={product.id} className='flex flex-col md:flex-row gap-4 items-center border-b pb-3 last:pb-0 last:border-none'>
                     <div className='w-full flex gap-4 md:items-center'>
-                      <Image
-                        src={currentProduct(product.id).images[0]}
-                        alt={"Img"}
-                        width={408}
-                        height={100}
-                        className="w-32 h-32 object-contain bg-gray-200 rounded-lg"
-                        priority
-                        quality={100}
-                      />
+                      <Link
+                        href={'/'}
+                        className='w-32 h-32 aspect-square'
+                      // href={{
+                      //   pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
+                      //     id: currentProduct(analogue).id
+                      //   }
+                      // }}
+                      >
+                        <Image
+                          src={currentProduct(product.id).images[0]}
+                          alt={"Img"}
+                          width={408}
+                          height={100}
+                          className="w-full h-full object-contain bg-gray-200 rounded-lg"
+                          priority
+                          quality={100}
+                        />
+                      </Link>
 
                       <div className='w-full'>
                         <b>{index + 1}. {currentProduct(product.id).title}</b>
