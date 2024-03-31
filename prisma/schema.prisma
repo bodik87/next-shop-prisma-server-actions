@@ -14,3 +14,11 @@ model Item {
   oldPrice   Float
   categoryId Int
 }
+
+model User {
+  id       String  @id @default(uuid())
+  email    String  @unique
+  password String
+  name     String?
+  adress   String?
+}
