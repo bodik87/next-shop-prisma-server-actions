@@ -68,7 +68,7 @@ export default function Category({ searchParams }: Props) {
                     <div className='mt-2 flex justify-between items-end'>
                       <p className='font-bold text-xl'>{el.price} zl</p>
 
-                      {el.isAvailable &&
+                      {/* {el.isAvailable &&
                         <button
                           className={cn('bg-green-500 p-2.5 rounded-xl font-bold text-lg',
                             el.isAvailable ? "bg-green-300" : "bg-gray-200",
@@ -76,7 +76,7 @@ export default function Category({ searchParams }: Props) {
                           )}>
                           <ShoppingBag />
                         </button>
-                      }
+                      } */}
                     </div>
 
 

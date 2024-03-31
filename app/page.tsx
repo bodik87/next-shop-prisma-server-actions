@@ -1,9 +1,7 @@
 import Promo from "@/components/promo";
 import { PRODUCTS } from "@/data";
-// import { getItems } from "@/lib/items";
 
 export default async function Home() {
-  // const { items = [] } = await getItems()
 
   return (
     <section className="pb-4">

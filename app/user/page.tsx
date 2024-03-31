@@ -5,12 +5,10 @@ import LoginForm from './_components/LoginForm';
 import UpdateForm from './_components/UpdateForm';
 import UpdateUserInformation from './_components/UpdateUserInformation';
 
-type PageSearchParams = {
- data: string
-}
-
-type Props = {
- searchParams: PageSearchParams
+export const DEFAULT_USER = {
+ id: "0000",
+ email: "unregistered@mail.com",
+ password: "unregistered"
 }
 
 export type SessionProps = {
@@ -22,7 +20,7 @@ export type SessionProps = {
  exp: Date
 }
 
-export default async function User({ searchParams }: Props) {
+export default async function User() {
  const session: SessionProps = await getSession();
 
  return (

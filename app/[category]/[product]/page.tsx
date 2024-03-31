@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
-import Counter from './_components/Counter'
 import Description from './_components/Description'
 import ProductBreadcrumbs from './_components/ProductBreadcrumbs'
+import AddToCart from './_components/AddToCart'
+import { getSession } from '@/lib/auth'
+import { SessionProps } from '@/app/user/page'
 
 type PageSearchParams = {
   id: string
@@ -20,7 +22,8 @@ function SearchBarFallback() {
   return <div className='wrapper py-5'>Loading...</div>
 }
 
-export default function Product({ searchParams }: Props) {
+export default async function Product({ searchParams }: Props) {
+  const session: SessionProps = await getSession();
   const id = searchParams.id
 
   const product = PRODUCTS
@@ -92,16 +95,18 @@ export default function Product({ searchParams }: Props) {
             </div>
 
             <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-4 rounded-xl shadow-md'>
-              {product.isAvailable && <Counter price={product.price} />}
-
-              <button
-                disabled={!product.isAvailable}
-                className={cn("w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
-                  product.isAvailable && "mt-4")}
-              >
-                {product.isAvailable ? "Add to cart" : "No product"}
-              </button>
-
+              {product.isAvailable ?
+                <AddToCart
+                  isAvailable={product.isAvailable}
+                  userEmail={session?.email}
+                  price={product.price}
+                /> :
+                <button
+                  type='button'
+                  className="w-full bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg">
+                  No product
+                </button>
+              }
               <a
                 className='mt-4 flex gap-4 justify-center items-center bg-gray-100 w-full p-3 rounded-lg'
                 href="tel:+380672785349">
@@ -110,7 +115,6 @@ export default function Product({ searchParams }: Props) {
                   className='fill-green-600 stroke-green-600' />
                 <span>+38-067-278-53-49</span>
               </a>
-
             </div>
           </section>
 

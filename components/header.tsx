@@ -7,10 +7,6 @@ import { SessionProps } from '@/app/user/page'
 
 type Props = {}
 
-const obj = {
- id: 1, title: "Bo"
-}
-
 export default async function Header({ }: Props) {
  const session: SessionProps = await getSession();
  return (
@@ -31,7 +27,7 @@ export default async function Header({ }: Props) {
 
     <div className='flex items-center gap-6'>
      <Link
-      href={{ pathname: '/user', query: { data: JSON.stringify(obj) } }}
+      href={'/user'}
       className='flex flex-nowrap'>
       <User />
       <span>{session?.name?.slice(0, 1).toUpperCase()}</span>
