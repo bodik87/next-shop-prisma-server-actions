@@ -20,7 +20,8 @@
     "nextjs-toploader": "^1.6.11",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind-merge": "^2.2.2"
+    "tailwind-merge": "^2.2.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",

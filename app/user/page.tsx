@@ -1,6 +1,8 @@
 import React from 'react'
 import { redirect } from "next/navigation";
-import { getSession, login, logout } from "@/lib/auth";
+import { getSession, logout } from "@/lib/auth";
+import LoginForm from './_components/LoginForm';
+import UpdateForm from './_components/UpdateForm';
 
 type PageSearchParams = {
  data: string
@@ -10,57 +12,55 @@ type Props = {
  searchParams: PageSearchParams
 }
 
+export type SessionProps = {
+ email: string,
+ name?: string,
+ address?: string,
+ expires: string,
+ iat: Date,
+ exp: Date
+}
+
 export default async function User({ searchParams }: Props) {
- const data = JSON.parse(searchParams.data)
- const session = await getSession();
+ const session: SessionProps = await getSession();
+
  return (
   <section>
    <div className="wrapper pb-5">
-    <h2>User {data.title}</h2>
+    <h2>User</h2>
 
-    <>
-     {!session &&
-      <form
-       action={async (formData) => {
-        "use server";
-        await login(formData);
-        // redirect("/");
-       }}
-       className='max-w-sm mx-auto'
-      >
-       <input
-        type="text"
-        name="login"
-        placeholder="Login"
-        className='w-full pl-4 pr-10 py-2 rounded-xl border outline-none'
-       />
+    {!session && <LoginForm />}
 
-       <button
-        type="submit"
-        className="mt-4 w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg"
-       >
-        Login
-       </button>
-      </form>
-     }
+    {session &&
+     <>
+      <b className='block mt-4'>Email</b>
+      <p>{session.email}</p>
 
-     {session &&
+      {session.name ? (
+       <>
+        <b className='block mt-4'>Name</b>
+        <p>{session.name}</p>
+
+        <b className='block mt-4'>Address</b>
+        <p>{session.address}</p>
+       </>
+      ) : <UpdateForm email={session.email} />}
+
       <form
        action={async () => {
         "use server";
         await logout();
         redirect("/");
        }}
+       className='mt-7'
       >
-       <button type="submit" className="mt-2 bg-red-600 text-white">Logout</button>
+       <button type="submit" className="mt-2 px-4 py-1.5 rounded-md bg-red-600 text-white">Logout</button>
       </form>
-     }
+     </>
+    }
 
-     <pre className="mt-2">{JSON.stringify(session, null, 2)}</pre>
-    </>
+    <pre className="mt-2">{JSON.stringify(session, null, 2)}</pre>
    </div>
-
-
-  </section>
+  </section >
  )
 }

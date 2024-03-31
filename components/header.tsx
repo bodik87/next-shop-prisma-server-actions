@@ -2,6 +2,8 @@ import React from 'react'
 import { Search, ShoppingBag, User } from "lucide-react"
 import Link from 'next/link'
 import CategoriesMenu from './categories-menu'
+import { getSession } from '@/lib/auth'
+import { SessionProps } from '@/app/user/page'
 
 type Props = {}
 
@@ -9,7 +11,8 @@ const obj = {
  id: 1, title: "Bo"
 }
 
-export default function Header({ }: Props) {
+export default async function Header({ }: Props) {
+ const session: SessionProps = await getSession();
  return (
   <header>
    <div className="wrapper py-4 flex items-center justify-between gap-4">
@@ -28,8 +31,10 @@ export default function Header({ }: Props) {
 
     <div className='flex items-center gap-6'>
      <Link
-      href={{ pathname: '/user', query: { data: JSON.stringify(obj) } }}>
+      href={{ pathname: '/user', query: { data: JSON.stringify(obj) } }}
+      className='flex flex-nowrap'>
       <User />
+      <span>{session?.name?.slice(0, 1).toUpperCase()}</span>
      </Link>
      <Link href={'/cart'}>
       <ShoppingBag />

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { CATEGORIES, PRODUCTS } from '@/data'
 import Link from 'next/link'
-import { Home, ChevronRight, Phone } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Counter from './_components/Counter'

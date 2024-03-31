@@ -20,5 +20,5 @@ model User {
   email    String  @unique
   password String
   name     String?
-  adress   String?
+  address  String?
 }

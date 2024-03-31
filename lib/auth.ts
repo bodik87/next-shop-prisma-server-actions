@@ -1,9 +1,53 @@
+"use server";
+
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
+// import jwt from "jsonwebtoken";
+
+import { revalidatePath } from "next/cache";
+
+export async function createUser(email: string, password: string) {
+  try {
+    const item = await prisma.user.create({
+      data: { email, password },
+    });
+    return { item };
+  } catch (error: any) {
+    return { error: error?.message || "Failed to create user." };
+  } finally {
+    revalidatePath("/user");
+  }
+}
+
+export async function updateUser(state: any, formData: FormData) {
+  const name = formData.get("name") as string;
+  const address = formData.get("address") as string;
+  const email = formData.get("email") as string;
+
+  const existedUser = await prisma.user.findUnique({ where: { email } });
+
+  if (existedUser) {
+    try {
+      await prisma.user.update({
+        where: { email },
+        data: { email, name, address },
+      });
+      const expires = new Date(Date.now() + 3600 * 1000 * 24);
+      const session = await encrypt({ email, name, address, expires });
+      cookies().set("session", session, { expires, httpOnly: true });
+    } catch (error) {
+      return { error };
+    }
+  } else {
+    return { message: "This user is not exist" };
+  }
+
+  revalidatePath("/user");
+}
 
 const secretKey = "secret";
-const USER = "Bogdan";
 const key = new TextEncoder().encode(secretKey);
 
 export async function encrypt(payload: any) {
@@ -21,24 +65,34 @@ export async function decrypt(input: string): Promise<any> {
   return payload;
 }
 
-export async function login(formData: FormData) {
-  // Verify credentials && get the user
+export async function login(state: any, formData: FormData) {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
 
-  try {
-    const login = formData.get("login");
+  if (password.length < 3) return { message: "Min 3 symbol" };
 
-    if (login === USER) {
-      // Create the session
-      const expires = new Date(Date.now() + 3600 * 1000 * 24);
-      const session = await encrypt({ login, expires });
+  const existedUser = await prisma.user.findUnique({ where: { email } });
 
-      // Save the session in a cookie
-      cookies().set("session", session, { expires, httpOnly: true });
-    } else {
-      return { message: "Problem" };
-    }
-  } catch (error) {
-    console.log(error);
+  if (!existedUser) {
+    createUser(email, password);
+    const expires = new Date(Date.now() + 3600 * 1000 * 24);
+    const session = await encrypt({ email, expires });
+    cookies().set("session", session, { expires, httpOnly: true });
+  }
+
+  if (existedUser?.password === password) {
+    const expires = new Date(Date.now() + 3600 * 1000 * 24);
+    const existedName = existedUser?.name;
+    const existedAddress = existedUser?.address;
+    const session = await encrypt({
+      email,
+      name: existedName,
+      address: existedAddress,
+      expires,
+    });
+    cookies().set("session", session, { expires, httpOnly: true });
+  } else {
+    return { message: "Invalid password" };
   }
 }
 
