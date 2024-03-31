@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getSession, logout } from "@/lib/auth";
 import LoginForm from './_components/LoginForm';
 import UpdateForm from './_components/UpdateForm';
+import UpdateUserInformation from './_components/UpdateUserInformation';
 
 type PageSearchParams = {
  data: string
@@ -43,6 +44,8 @@ export default async function User({ searchParams }: Props) {
 
         <b className='block mt-4'>Address</b>
         <p>{session.address}</p>
+
+        <UpdateUserInformation email={session.email} />
        </>
       ) : <UpdateForm email={session.email} />}
 
