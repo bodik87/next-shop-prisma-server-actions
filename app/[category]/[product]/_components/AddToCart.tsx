@@ -3,7 +3,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { createLocalOrder } from '@/app/_actions/localOrder'
 import { cn } from '@/lib/utils'
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 type Props = {
   isAvailable: boolean
@@ -15,6 +15,7 @@ type Props = {
 export default function AddToCart({ isAvailable, userEmail, productId, price }: Props) {
 
   const [quantity, setQuantity] = useState(1)
+  const [error, setError] = useState<null | string>(null)
 
   const total = price * quantity
 
@@ -31,6 +32,10 @@ export default function AddToCart({ isAvailable, userEmail, productId, price }: 
     }
   }
 
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setQuantity(Number(value))
+  };
 
   return (
     <>
@@ -54,7 +59,17 @@ export default function AddToCart({ isAvailable, userEmail, productId, price }: 
             e.preventDefault()
             return false
           }}
-          onChange={(e: any) => setQuantity(e.target.value.replace(/\D/g, ''))}
+          onBlur={() => {
+            if (quantity === null || quantity === 0) {
+              setError("Min 1")
+              setQuantity(1)
+            }
+            if (quantity > 100) {
+              setError("Max 100")
+              setQuantity(100)
+            }
+          }}
+          onChange={handleChange}
           className='w-full text-center font-bold px-10 border-x-2 flex items-center justify-center' />
 
         <button
@@ -63,6 +78,7 @@ export default function AddToCart({ isAvailable, userEmail, productId, price }: 
           +
         </button>
       </div>
+      <p className='text-xs font-bold mt-2 text-center text-red-600'>{error}</p>
 
 
       <form action={action}>

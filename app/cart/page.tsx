@@ -1,13 +1,15 @@
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import React from 'react'
-import { X } from 'lucide-react';
 import { CATEGORIES, PRODUCTS } from '@/data';
 import Link from 'next/link';
 import { LocalOrderProps, ProductForOrderProps, SessionProps } from '@/lib/schema';
 import { getSession } from '../_actions/user';
 import { getLocalOrder } from '../_actions/localOrder';
 import DeleteProduct from './_components/DeleteProduct';
+import IncrementButton from './_components/IncrementButton';
+import DecrementButton from './_components/DecrementButton';
+import QuantityInput from './_components/QuantityInput';
 
 type Props = {}
 
@@ -67,31 +69,11 @@ export default async function Cart({ }: Props) {
                       <div className='w-full flex gap-4 items-center justify-between'>
 
                         <div className='max-w-44 w-full flex justify-between border-2 rounded-xl'>
-                          <button
-                            // onClick={() => setCount(count - 1)}
-                            className='h-12 w-12 aspect-square font-bold'>
-                            -
-                          </button>
+                          <DecrementButton quantity={el.quantity} />
 
-                          <input
-                            type='number'
-                            value={el.quantity}
-                            readOnly
-                            min={1}
-                            step={1}
-                            // onPaste={(e) => {
-                            //   e.preventDefault()
-                            //   return false
-                            // }}
-                            // value={count}
-                            // onChange={(e: any) => setCount(e.target.value)}
-                            className='w-full text-center font-bold border-x-2 flex items-center justify-center' />
+                          <QuantityInput quantity={el.quantity} />
 
-                          <button
-                            // onClick={() => setCount(count + 1)}
-                            className='h-12 w-12 aspect-square font-bold'>
-                            +
-                          </button>
+                          <IncrementButton quantity={el.quantity} />
                         </div>
 
                         <b className='px-4 whitespace-nowrap'>

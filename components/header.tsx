@@ -37,7 +37,7 @@ export default async function Header() {
       <ShoppingBag />
       {order && (
        <span
-        className='absolute -top-2 -right-2 bg-orange-600 text-white rounded-full w-5 h-5 aspect-square flex items-center justify-center text-xs'>
+        className='absolute -top-2 -right-2 bg-orange-600 text-white rounded-full w-5 h-5 aspect-square flex items-center justify-center text-[8px]'>
         {order.products.reduce(
          (acc: number, el: ProductForOrderProps) => {
           const res = acc + el.quantity;

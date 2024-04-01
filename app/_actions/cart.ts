@@ -43,3 +43,18 @@ export async function deleteProductFromOrder(state: any, formData: FormData) {
     return { error };
   }
 }
+
+export async function incrementLocalOrder(state: any, formData: FormData) {
+  console.log("increment");
+}
+
+export async function decrementLocalOrder(state: any, formData: FormData) {
+  console.log("decrement");
+}
+
+export async function changeQuantityByInputInLocalOrder(
+  state: any,
+  formData: FormData
+) {
+  console.log("Input");
+}
