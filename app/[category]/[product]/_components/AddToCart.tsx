@@ -1,32 +1,36 @@
 "use client"
 
-import { createLocalOrder } from '@/app/_actions/orders'
+import { v4 as uuidv4 } from 'uuid';
+import { createLocalOrder } from '@/app/_actions/localOrder'
 import { cn } from '@/lib/utils'
 import React, { useState } from 'react'
 
 type Props = {
   isAvailable: boolean
   userEmail: string
+  productId: number
   price: number
 }
 
-export default function AddToCart({ isAvailable, userEmail, price }: Props) {
+export default function AddToCart({ isAvailable, userEmail, productId, price }: Props) {
 
-  const [count, setCount] = useState(1)
+  const [quantity, setQuantity] = useState(1)
+
+  const total = price * quantity
 
   async function action() {
+    const product = { id: uuidv4(), productId, quantity, price }
     try {
       if (userEmail) {
-        await createLocalOrder(userEmail, total)
+        await createLocalOrder(userEmail, product)
       } else {
-        await createLocalOrder("unregisteredUser@mail.com", total)
+        await createLocalOrder("unregisteredUser@mail.com", product)
       }
     } catch (error) {
       console.log(error)
     }
   }
 
-  const total = price * count
 
   return (
     <>
@@ -35,8 +39,8 @@ export default function AddToCart({ isAvailable, userEmail, price }: Props) {
 
       <div className='mt-4 flex justify-between border-2 rounded-xl'>
         <button
-          disabled={count === 1}
-          onClick={() => setCount(count - 1)}
+          disabled={quantity === 1}
+          onClick={() => setQuantity(quantity - 1)}
           className='py-4 px-6 font-bold'>
           -
         </button>
@@ -45,16 +49,16 @@ export default function AddToCart({ isAvailable, userEmail, price }: Props) {
           type='number'
           min={1}
           step={1}
-          value={count}
+          value={quantity}
           onPaste={(e) => {
             e.preventDefault()
             return false
           }}
-          onChange={(e: any) => setCount(e.target.value.replace(/\D/g, ''))}
+          onChange={(e: any) => setQuantity(e.target.value.replace(/\D/g, ''))}
           className='w-full text-center font-bold px-10 border-x-2 flex items-center justify-center' />
 
         <button
-          onClick={() => setCount(count + 1)}
+          onClick={() => setQuantity(quantity + 1)}
           className='py-4 px-6 font-bold'>
           +
         </button>

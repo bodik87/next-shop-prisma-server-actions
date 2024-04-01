@@ -74,6 +74,7 @@ export async function login(state: any, formData: FormData) {
   const existedUser = await prisma.user.findUnique({ where: { email } });
 
   if (!existedUser) {
+    // create user
     createUser(email, password);
     const expires = new Date(Date.now() + 3600 * 1000 * 24);
     const session = await encrypt({ email, expires });
@@ -93,6 +94,20 @@ export async function login(state: any, formData: FormData) {
     cookies().set("session", session, { expires, httpOnly: true });
   } else {
     return { message: "Invalid password" };
+  }
+
+  // update local order
+  const existedLocalOrder = cookies().get("order")?.value;
+  if (existedLocalOrder) {
+    const parsedOrder = await decrypt(existedLocalOrder);
+
+    const order = await encrypt({
+      userEmail: email,
+      products: parsedOrder.products,
+      total: parsedOrder.total,
+    });
+
+    cookies().set("order", order, { httpOnly: true });
   }
 }
 

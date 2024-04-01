@@ -4,6 +4,7 @@ import { getSession, logout } from "@/lib/auth";
 import LoginForm from './_components/LoginForm';
 import UpdateForm from './_components/UpdateForm';
 import UpdateUserInformation from './_components/UpdateUserInformation';
+import { getLocalOrder } from '../_actions/localOrder';
 
 export const DEFAULT_USER = {
  id: "0000",
@@ -22,6 +23,10 @@ export type SessionProps = {
 
 export default async function User() {
  const session: SessionProps = await getSession();
+ const order: any = await getLocalOrder();
+
+ console.log(order);
+
 
  return (
   <section>
@@ -61,6 +66,7 @@ export default async function User() {
     }
 
     <pre className="mt-2">{JSON.stringify(session, null, 2)}</pre>
+    <pre className="mt-2">{JSON.stringify(order, null, 2)}</pre>
    </div>
   </section >
  )

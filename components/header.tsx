@@ -4,11 +4,16 @@ import Link from 'next/link'
 import CategoriesMenu from './categories-menu'
 import { getSession } from '@/lib/auth'
 import { SessionProps } from '@/app/user/page'
+import { getLocalOrder, ProductForOrderProps } from '@/app/_actions/localOrder'
 
 type Props = {}
 
 export default async function Header({ }: Props) {
  const session: SessionProps = await getSession();
+ const order: any = await getLocalOrder();
+
+ console.log();
+
  return (
   <header>
    <div className="wrapper py-4 flex items-center justify-between gap-4">
@@ -32,8 +37,18 @@ export default async function Header({ }: Props) {
       <User />
       <span>{session?.name?.slice(0, 1).toUpperCase()}</span>
      </Link>
-     <Link href={'/cart'}>
+     <Link href={'/cart'} className='relative'>
       <ShoppingBag />
+      {order && <span
+       className='absolute -top-2 -right-2 bg-orange-600 text-white rounded-full w-5 h-5 aspect-square flex items-center justify-center text-xs'>
+       {order.products.reduce(
+        (acc: number, el: ProductForOrderProps) => {
+         const res = acc + el.quantity;
+         return res;
+        },
+        0
+       )}
+      </span>}
      </Link>
     </div>
    </div>

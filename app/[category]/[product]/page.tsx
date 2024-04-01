@@ -99,6 +99,7 @@ export default async function Product({ searchParams }: Props) {
                 <AddToCart
                   isAvailable={product.isAvailable}
                   userEmail={session?.email}
+                  productId={product.id}
                   price={product.price}
                 /> :
                 <button
