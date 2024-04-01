@@ -45,11 +45,69 @@ export async function deleteProductFromOrder(state: any, formData: FormData) {
 }
 
 export async function incrementLocalOrder(state: any, formData: FormData) {
-  console.log("increment");
+  const quantity = formData.get("quantity") as string;
+  const id = formData.get("id") as string;
+  try {
+    const existedLocalOrder = cookies().get("order")?.value;
+    if (!existedLocalOrder) {
+      return;
+    } else {
+      const parsedOrder: LocalOrderProps = await decrypt(existedLocalOrder);
+      const { products, total, ...spread } = parsedOrder;
+    }
+  } catch (error) {
+    return { error };
+  }
+  console.log(quantity);
 }
 
 export async function decrementLocalOrder(state: any, formData: FormData) {
-  console.log("decrement");
+  const id = formData.get("id") as string;
+  try {
+    const existedLocalOrder = cookies().get("order")?.value;
+    if (!existedLocalOrder) {
+      return;
+    } else {
+      const parsedOrder: LocalOrderProps = await decrypt(existedLocalOrder);
+      const { products, total, ...spread } = parsedOrder;
+      const selectedProduct = products.filter(
+        (product) => product.id === id
+      )[0];
+
+      let updatedProducts = [];
+
+      if (selectedProduct.quantity === 1) {
+        const result = products.filter((product) => product.id !== id);
+        updatedProducts = result;
+      } else {
+        const result = products.filter((product) => product.id !== id);
+        selectedProduct.quantity -= 1;
+        updatedProducts = [...result, selectedProduct];
+      }
+
+      const updatedTotal = updatedProducts.reduce(
+        (acc: number, el: ProductForOrderProps) => {
+          const res = acc + el.quantity * el.price;
+          return res;
+        },
+        0
+      );
+
+      const order = await encrypt({
+        products: updatedProducts,
+        total: updatedTotal,
+        ...spread,
+      });
+
+      if (updatedProducts.length === 0) {
+        cookies().delete("order");
+      } else {
+        cookies().set("order", order, { httpOnly: true });
+      }
+    }
+  } catch (error) {
+    return { error };
+  }
 }
 
 export async function changeQuantityByInputInLocalOrder(

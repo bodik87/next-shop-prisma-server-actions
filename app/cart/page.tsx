@@ -37,53 +37,55 @@ export default async function Cart({ }: Props) {
               <div className='w-full'>
 
                 <div className='flex flex-col gap-3'>
-                  {localOrder.products.map((el, index) => (
-                    <div key={el.id} className='flex flex-col md:flex-row gap-4 items-center border-b pb-3 last:pb-0 last:border-none'>
-                      <div className='w-full flex gap-4 md:items-center'>
-                        <Link
-                          href={'/'}
-                          className='w-32 h-32 aspect-square'
-                        // href={{
-                        //   pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
-                        //     id: currentProduct(analogue).id
-                        //   }
-                        // }}
-                        >
-                          <Image
-                            src={currentProduct(el.productId.toString()).images[0]}
-                            alt={"Img"}
-                            width={408}
-                            height={100}
-                            className="w-full h-full object-contain bg-gray-200 rounded-lg"
-                            priority
-                            quality={100}
-                          />
-                        </Link>
+                  {localOrder.products.
+                    sort((a, b): any => (a.price as any > b.price as any) - (a.price as any < b.price as any)).
+                    map((el, index) => (
+                      <div key={el.id} className='flex flex-col md:flex-row gap-4 items-center border-b pb-3 last:pb-0 last:border-none'>
+                        <div className='w-full flex gap-4 md:items-center'>
+                          <Link
+                            href={'/'}
+                            className='w-32 h-32 aspect-square'
+                          // href={{
+                          //   pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
+                          //     id: currentProduct(analogue).id
+                          //   }
+                          // }}
+                          >
+                            <Image
+                              src={currentProduct(el.productId.toString()).images[0]}
+                              alt={"Img"}
+                              width={408}
+                              height={100}
+                              className="w-full h-full object-contain bg-gray-200 rounded-lg"
+                              priority
+                              quality={100}
+                            />
+                          </Link>
 
-                        <div className='w-full'>
-                          <b>{index + 1}. {currentProduct(el.productId.toString()).title}</b>
-                          <p>{currentProduct(el.productId.toString()).price} zl/szt</p>
-                        </div>
-                      </div>
-
-                      <div className='w-full flex gap-4 items-center justify-between'>
-
-                        <div className='max-w-44 w-full flex justify-between border-2 rounded-xl relative'>
-                          <DecrementButton quantity={el.quantity} />
-
-                          <QuantityInput quantity={el.quantity} />
-
-                          <IncrementButton quantity={el.quantity} />
+                          <div className='w-full'>
+                            <b>{index + 1}. {currentProduct(el.productId.toString()).title}</b>
+                            <p>{currentProduct(el.productId.toString()).price} zl/szt</p>
+                          </div>
                         </div>
 
-                        <b className='px-4 whitespace-nowrap'>
-                          {el.quantity * currentProduct(el.productId.toString()).price}
-                        </b>
+                        <div className='w-full flex gap-4 items-center justify-between'>
 
-                        <DeleteProduct id={el.id} />
+                          <div className='max-w-44 w-full flex justify-between border-2 rounded-xl relative'>
+                            <DecrementButton quantity={el.quantity} id={el.id} />
+
+                            <QuantityInput quantity={el.quantity} id={el.id} />
+
+                            <IncrementButton quantity={el.quantity} id={el.id} />
+                          </div>
+
+                          <b className='px-4 whitespace-nowrap'>
+                            {el.quantity * currentProduct(el.productId.toString()).price}
+                          </b>
+
+                          <DeleteProduct id={el.id} />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
 
               </div>

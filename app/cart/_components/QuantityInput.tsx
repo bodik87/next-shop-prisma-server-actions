@@ -1,12 +1,12 @@
 "use client"
 
 import { changeQuantityByInputInLocalOrder, incrementLocalOrder } from '@/app/_actions/cart'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 
-type Props = { quantity: number }
+type Props = { quantity: number, id: string }
 
-export default function QuantityInput({ quantity }: Props) {
+export default function QuantityInput({ quantity, id }: Props) {
   const [state, formAction] = useFormState(changeQuantityByInputInLocalOrder, null)
   const { pending } = useFormStatus()
   const [value, setValue] = useState<number | string>(quantity)
@@ -21,8 +21,14 @@ export default function QuantityInput({ quantity }: Props) {
     }
   };
 
+  useEffect(() => {
+    setValue(quantity)
+  }, [quantity])
+
+
   return (
     <>
+      <input type="hidden" name="id" value={id} readOnly />
       <input
         type='number'
         value={value}

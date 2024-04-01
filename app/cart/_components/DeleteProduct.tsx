@@ -15,7 +15,6 @@ export default function DeleteProduct({ id }: Props) {
  return (
   <form
    action={formAction}
-   className='mt-4 max-w-sm'
   >
    <input type="hidden" name="id" value={id} readOnly />
 
