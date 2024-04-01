@@ -6,12 +6,6 @@ import { getLocalOrder } from '../[category]/[product]/_actions/localOrder';
 import { getSession, logout } from './_actions/user';
 import { LocalOrderProps, SessionProps } from '@/lib/schema';
 
-export const DEFAULT_USER = {
- id: "0000",
- email: "unregistered@mail.com",
- password: "unregistered"
-}
-
 export default async function User() {
  const session: SessionProps = await getSession();
  const localOrder: LocalOrderProps = await getLocalOrder();
