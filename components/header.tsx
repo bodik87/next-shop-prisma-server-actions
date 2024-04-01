@@ -6,6 +6,7 @@ import { getLocalOrder } from '@/app/_actions/localOrder'
 import { getSession } from '@/app/_actions/user'
 import { ProductForOrderProps, SessionProps } from '@/lib/schema'
 import { cn } from '@/lib/utils'
+import Categories from './categories'
 
 export default async function Header() {
  const session: SessionProps = await getSession();
@@ -51,8 +52,9 @@ export default async function Header() {
     </div>
    </div>
 
-   <div className='wrapper flex items-center gap-4'>
-    <CategoriesMenu />
+   <div className='wrapper flex items-center gap-4 relative'>
+    {/* <CategoriesMenu /> */}
+    <Categories />
    </div>
   </header>
  )
