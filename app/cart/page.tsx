@@ -68,7 +68,7 @@ export default async function Cart({ }: Props) {
 
                       <div className='w-full flex gap-4 items-center justify-between'>
 
-                        <div className='max-w-44 w-full flex justify-between border-2 rounded-xl'>
+                        <div className='max-w-44 w-full flex justify-between border-2 rounded-xl relative'>
                           <DecrementButton quantity={el.quantity} />
 
                           <QuantityInput quantity={el.quantity} />
