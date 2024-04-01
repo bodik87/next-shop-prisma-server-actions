@@ -1,7 +1,6 @@
 import React from 'react'
 import { Search, ShoppingBag, User } from "lucide-react"
 import Link from 'next/link'
-import CategoriesMenu from './categories-menu'
 import { getLocalOrder } from '@/app/_actions/localOrder'
 import { getSession } from '@/app/_actions/user'
 import { ProductForOrderProps, SessionProps } from '@/lib/schema'
