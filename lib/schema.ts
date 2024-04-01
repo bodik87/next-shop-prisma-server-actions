@@ -18,7 +18,7 @@ export type LocalOrderProps = {
   userEmail: string;
   products: ProductForOrderProps[];
   total: number;
-  info: string;
+  info?: string;
   iat: Date;
   exp: Date;
 };
