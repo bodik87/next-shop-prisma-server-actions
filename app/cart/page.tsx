@@ -5,8 +5,9 @@ import { X } from 'lucide-react';
 import { CATEGORIES, PRODUCTS } from '@/data';
 import Link from 'next/link';
 import { LocalOrderProps, ProductForOrderProps, SessionProps } from '@/lib/schema';
-import { getSession } from '../user/_actions/user';
-import { getLocalOrder } from '../[category]/[product]/_actions/localOrder';
+import { getSession } from '../_actions/user';
+import { getLocalOrder } from '../_actions/localOrder';
+import DeleteProduct from './_components/DeleteProduct';
 
 type Props = {}
 
@@ -75,6 +76,7 @@ export default async function Cart({ }: Props) {
                           <input
                             type='number'
                             value={el.quantity}
+                            readOnly
                             min={1}
                             step={1}
                             // onPaste={(e) => {
@@ -96,10 +98,7 @@ export default async function Cart({ }: Props) {
                           {el.quantity * currentProduct(el.productId.toString()).price}
                         </b>
 
-                        <button
-                          className='w-9 h-9 bg-red-50 flex items-center justify-center rounded-lg active:scale-95'>
-                          <X />
-                        </button>
+                        <DeleteProduct id={el.id} />
                       </div>
                     </div>
                   ))}

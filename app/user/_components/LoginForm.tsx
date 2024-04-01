@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
-import { enter } from '../_actions/user'
+import { enter } from '../../_actions/user'
 
 type Props = {}
 

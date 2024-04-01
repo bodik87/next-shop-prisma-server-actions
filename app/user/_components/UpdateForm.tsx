@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
-import { updateUser } from '../_actions/user'
+import { updateUser } from '../../_actions/user'
 
 type Props = {
  email: string

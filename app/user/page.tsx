@@ -2,8 +2,8 @@ import React from 'react'
 import { redirect } from "next/navigation";
 import LoginForm from './_components/LoginForm';
 import UpdateForm from './_components/UpdateForm';
-import { getLocalOrder } from '../[category]/[product]/_actions/localOrder';
-import { getSession, logout } from './_actions/user';
+import { getLocalOrder } from '../_actions/localOrder';
+import { getSession, logout } from '../_actions/user';
 import { LocalOrderProps, SessionProps } from '@/lib/schema';
 
 export default async function User() {

@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Description from './_components/Description'
 import ProductBreadcrumbs from './_components/ProductBreadcrumbs'
 import AddToCart from './_components/AddToCart'
-import { getSession } from '@/app/user/_actions/user'
+import { getSession } from '@/app/_actions/user'
 import { PageSearchParams, SessionProps } from '@/lib/schema'
 import Fallback from '@/components/ui/Fallback'
 

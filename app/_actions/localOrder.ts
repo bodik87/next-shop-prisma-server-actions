@@ -2,8 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { decrypt, encrypt } from "../../../user/_actions/user";
-import { ProductForOrderProps } from "@/lib/schema";
+import { LocalOrderProps, ProductForOrderProps } from "@/lib/schema";
+import { decrypt, encrypt } from "@/lib/crypt";
 
 export async function getLocalOrder() {
   const order = cookies().get("order")?.value;
@@ -27,7 +27,7 @@ export async function createLocalOrder(
 
       cookies().set("order", order, { httpOnly: true });
     } else {
-      const parsedOrder = await decrypt(existedLocalOrder);
+      const parsedOrder: LocalOrderProps = await decrypt(existedLocalOrder);
 
       const existingItem = parsedOrder.products.find(
         (el: ProductForOrderProps) => el.productId === product.productId
