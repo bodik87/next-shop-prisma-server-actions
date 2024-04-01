@@ -9,7 +9,6 @@ import { getLocalOrder } from '../_actions/localOrder';
 import DeleteProduct from './_components/DeleteProduct';
 import IncrementButton from './_components/IncrementButton';
 import DecrementButton from './_components/DecrementButton';
-import QuantityInput from './_components/QuantityInput';
 
 type Props = {}
 
@@ -73,7 +72,11 @@ export default async function Cart({ }: Props) {
                           <div className='max-w-44 w-full flex justify-between border-2 rounded-xl relative'>
                             <DecrementButton id={el.id} />
 
-                            <QuantityInput quantity={el.quantity} id={el.id} />
+                            <input
+                              type='number'
+                              readOnly
+                              value={el.quantity}
+                              className='w-full text-center font-bold border-x-2 flex items-center justify-center' />
 
                             <IncrementButton id={el.id} />
                           </div>

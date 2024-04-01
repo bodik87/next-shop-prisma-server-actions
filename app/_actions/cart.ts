@@ -137,10 +137,3 @@ export async function decrementLocalOrder(state: any, formData: FormData) {
     return { error };
   }
 }
-
-export async function changeQuantityByInputInLocalOrder(
-  state: any,
-  formData: FormData
-) {
-  console.log("Input");
-}
