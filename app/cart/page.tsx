@@ -17,13 +17,15 @@ export default async function Cart({ }: Props) {
   const session: SessionProps = await getSession();
   const localOrder: LocalOrderProps = await getLocalOrder();
 
-  const currentProduct = (id: string) => {
+  const currentProduct = (id: string): any => {
     return PRODUCTS.filter(product => product.id.toString() === id)[0]
   }
 
-  // const categoryHref = `${CATEGORIES
-  //   .filter(category =>
-  //     category.id === Number(product.categoryId))[0].slug}/`
+  const categoryHref = (id: number) => {
+    `${CATEGORIES
+      .filter(category =>
+        category.id === Number(id))[0].slug}/`
+  }
 
   return (
     <section>
@@ -40,32 +42,29 @@ export default async function Cart({ }: Props) {
                     sort((a, b): any => (a.price as any > b.price as any) - (a.price as any < b.price as any)).
                     map((el, index) => (
                       <div key={el.id} className='flex flex-col md:flex-row gap-4 items-center border-b pb-3 last:pb-0 last:border-none'>
-                        <div className='w-full flex gap-4 md:items-center'>
-                          <Link
-                            href={'/'}
-                            className='w-32 h-32 aspect-square'
-                          // href={{
-                          //   pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
-                          //     id: currentProduct(analogue).id
-                          //   }
-                          // }}
-                          >
-                            <Image
-                              src={currentProduct(el.productId.toString()).images[0]}
-                              alt={"Img"}
-                              width={408}
-                              height={100}
-                              className="w-full h-full object-contain bg-gray-200 rounded-lg"
-                              priority
-                              quality={100}
-                            />
-                          </Link>
-
+                        <Link
+                          className='w-full flex gap-4 md:items-center'
+                          href={{
+                            pathname: categoryHref(currentProduct(el.productId.toString()).categoryId) + currentProduct(el.productId.toString()).slug + currentProduct(el.productId.toString()).code, query: {
+                              id: currentProduct(el.productId.toString()).id
+                            }
+                          }}
+                        >
+                          <Image
+                            src={currentProduct(el.productId.toString()).images[0]}
+                            alt={"Img"}
+                            width={408}
+                            height={100}
+                            className="w-32 h-32 aspect-square object-contain bg-gray-200 rounded-lg"
+                            priority
+                            quality={100}
+                          />
                           <div className='w-full'>
                             <b>{index + 1}. {currentProduct(el.productId.toString()).title}</b>
                             <p>{currentProduct(el.productId.toString()).price} zl/szt</p>
                           </div>
-                        </div>
+                        </Link>
+
 
                         <div className='w-full flex gap-4 items-center justify-between'>
 
