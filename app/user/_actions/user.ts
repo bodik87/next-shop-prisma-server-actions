@@ -52,6 +52,21 @@ export async function updateUser(state: any, formData: FormData) {
       const expires = new Date(Date.now() + 3600 * 1000 * 24);
       const session = await encrypt({ email, info, expires });
       cookies().set("session", session, { expires, httpOnly: true });
+
+      // Update local order
+      const existedLocalOrder = cookies().get("order")?.value;
+      if (existedLocalOrder) {
+        const parsedOrder = await decrypt(existedLocalOrder);
+
+        const order = await encrypt({
+          userEmail: email,
+          products: parsedOrder.products,
+          total: parsedOrder.total,
+          info,
+        });
+
+        cookies().set("order", order, { httpOnly: true });
+      }
     } catch (error) {
       return { error };
     }

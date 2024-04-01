@@ -53,10 +53,10 @@ export default function CategoriesMenu() {
               )}
             </Menu.Item>
 
-            <Disclosure defaultOpen>
+            <Disclosure>
               {({ open }) => (
                 <>
-                  <Disclosure.Button className="flex w-full bg-green-700 p-3 text-left font-medium hover:bg-green-600 focus:outline-none">
+                  <Disclosure.Button className="flex w-full bg-gray-700 p-3 text-left font-medium hover:bg-gray-600 focus:outline-none">
                     <DuplicateActiveIcon
                       className="mr-2 h-5 w-5"
                       aria-hidden="true"
@@ -65,7 +65,7 @@ export default function CategoriesMenu() {
                     <ChevronDown className={`ml-auto ${open && "rotate-180"}`} />
 
                   </Disclosure.Button>
-                  <Disclosure.Panel className="bg-green-900">
+                  <Disclosure.Panel className="bg-gray-900">
                     <Menu.Item>
                       {({ close, active }) => (
                         <Link onClick={close}
@@ -73,7 +73,7 @@ export default function CategoriesMenu() {
                             pathname: CATEGORIES[1].slug,
                             query: { id: CATEGORIES[1].id }
                           }}
-                          className={`${active ? 'bg-green-800' : ''
+                          className={`${active ? 'bg-gray-800' : ''
                             } group flex w-full items-center p-3 whitespace-nowrap`}>
                           {active ? (
                             <DuplicateActiveIcon

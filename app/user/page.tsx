@@ -4,7 +4,7 @@ import LoginForm from './_components/LoginForm';
 import UpdateForm from './_components/UpdateForm';
 import { getLocalOrder } from '../[category]/[product]/_actions/localOrder';
 import { getSession, logout } from './_actions/user';
-import { SessionProps } from '@/lib/schema';
+import { LocalOrderProps, SessionProps } from '@/lib/schema';
 
 export const DEFAULT_USER = {
  id: "0000",
@@ -14,7 +14,7 @@ export const DEFAULT_USER = {
 
 export default async function User() {
  const session: SessionProps = await getSession();
- const order: any = await getLocalOrder();
+ const localOrder: LocalOrderProps = await getLocalOrder();
 
  return (
   <section>
@@ -43,7 +43,7 @@ export default async function User() {
         await logout();
         redirect("/");
        }}
-       className='mt-7'
+       className='mt-8'
       >
        <button type="submit" className="mt-2 px-4 py-1.5 rounded-md bg-red-600 text-white">Logout</button>
       </form>
@@ -51,7 +51,7 @@ export default async function User() {
     }
 
     <pre className="mt-2">{JSON.stringify(session, null, 2)}</pre>
-    <pre className="mt-2">{JSON.stringify(order, null, 2)}</pre>
+    <pre className="mt-2">{JSON.stringify(localOrder, null, 2)}</pre>
    </div>
   </section >
  )

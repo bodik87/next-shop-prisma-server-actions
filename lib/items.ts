@@ -1,13 +1,13 @@
-import prisma from "@/lib/prisma";
+// import prisma from "@/lib/prisma";
 
-export async function getItems() {
-  try {
-    const items = await prisma.item.findMany();
-    return { items };
-  } catch (error) {
-    return { error };
-  }
-}
+// export async function getItems() {
+//   try {
+//     const items = await prisma.item.findMany();
+//     return { items };
+//   } catch (error) {
+//     return { error };
+//   }
+// }
 
 // export async function createItem(
 //   id: string,
