@@ -1,19 +1,18 @@
 "use client"
 
-import { incrementLocalOrder } from '@/app/_actions/cart'
 import React from 'react'
+import { incrementLocalOrder } from '@/app/_actions/cart'
 import { useFormState, useFormStatus } from 'react-dom'
 
-type Props = { quantity: number, id: string }
+type Props = { id: string }
 
-export default function IncrementButton({ quantity, id }: Props) {
+export default function IncrementButton({ id }: Props) {
  const [state, formAction] = useFormState(incrementLocalOrder, null)
  const { pending } = useFormStatus()
  return (
   <form
    action={formAction}
   >
-   <input type="hidden" name="quantity" value={quantity} readOnly />
    <input type="hidden" name="id" value={id} readOnly />
 
    <button

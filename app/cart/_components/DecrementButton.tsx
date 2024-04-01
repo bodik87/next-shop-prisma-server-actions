@@ -4,9 +4,9 @@ import React from 'react'
 import { decrementLocalOrder } from '@/app/_actions/cart'
 import { useFormState, useFormStatus } from 'react-dom'
 
-type Props = { quantity: number, id: string }
+type Props = { id: string }
 
-export default function DecrementButton({ quantity, id }: Props) {
+export default function DecrementButton({ id }: Props) {
  const [state, formAction] = useFormState(decrementLocalOrder, null)
  const { pending } = useFormStatus()
  return (

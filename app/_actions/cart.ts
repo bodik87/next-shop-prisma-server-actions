@@ -1,9 +1,7 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { decrypt, encrypt } from "@/lib/crypt";
 import { LocalOrderProps, ProductForOrderProps } from "@/lib/schema";
@@ -54,11 +52,36 @@ export async function incrementLocalOrder(state: any, formData: FormData) {
     } else {
       const parsedOrder: LocalOrderProps = await decrypt(existedLocalOrder);
       const { products, total, ...spread } = parsedOrder;
+
+      const selectedProduct = products.filter(
+        (product) => product.id === id
+      )[0];
+
+      let updatedProducts = [];
+
+      const filteredProducts = products.filter((product) => product.id !== id);
+      selectedProduct.quantity += 1;
+      updatedProducts = [...filteredProducts, selectedProduct];
+
+      const updatedTotal = updatedProducts.reduce(
+        (acc: number, el: ProductForOrderProps) => {
+          const res = acc + el.quantity * el.price;
+          return res;
+        },
+        0
+      );
+
+      const order = await encrypt({
+        products: updatedProducts,
+        total: updatedTotal,
+        ...spread,
+      });
+
+      cookies().set("order", order, { httpOnly: true });
     }
   } catch (error) {
     return { error };
   }
-  console.log(quantity);
 }
 
 export async function decrementLocalOrder(state: any, formData: FormData) {
@@ -70,6 +93,7 @@ export async function decrementLocalOrder(state: any, formData: FormData) {
     } else {
       const parsedOrder: LocalOrderProps = await decrypt(existedLocalOrder);
       const { products, total, ...spread } = parsedOrder;
+
       const selectedProduct = products.filter(
         (product) => product.id === id
       )[0];
@@ -77,12 +101,16 @@ export async function decrementLocalOrder(state: any, formData: FormData) {
       let updatedProducts = [];
 
       if (selectedProduct.quantity === 1) {
-        const result = products.filter((product) => product.id !== id);
-        updatedProducts = result;
+        const filteredProducts = products.filter(
+          (product) => product.id !== id
+        );
+        updatedProducts = filteredProducts;
       } else {
-        const result = products.filter((product) => product.id !== id);
+        const filteredProducts = products.filter(
+          (product) => product.id !== id
+        );
         selectedProduct.quantity -= 1;
-        updatedProducts = [...result, selectedProduct];
+        updatedProducts = [...filteredProducts, selectedProduct];
       }
 
       const updatedTotal = updatedProducts.reduce(

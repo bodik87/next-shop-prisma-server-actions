@@ -71,11 +71,11 @@ export default async function Cart({ }: Props) {
                         <div className='w-full flex gap-4 items-center justify-between'>
 
                           <div className='max-w-44 w-full flex justify-between border-2 rounded-xl relative'>
-                            <DecrementButton quantity={el.quantity} id={el.id} />
+                            <DecrementButton id={el.id} />
 
                             <QuantityInput quantity={el.quantity} id={el.id} />
 
-                            <IncrementButton quantity={el.quantity} id={el.id} />
+                            <IncrementButton id={el.id} />
                           </div>
 
                           <b className='px-4 whitespace-nowrap'>
