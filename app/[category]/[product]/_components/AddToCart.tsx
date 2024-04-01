@@ -1,7 +1,7 @@
 "use client"
 
 import { v4 as uuidv4 } from 'uuid';
-import { createLocalOrder } from '@/app/_actions/localOrder'
+import { createLocalOrder } from '@/app/[category]/[product]/_actions/localOrder'
 import { cn } from '@/lib/utils'
 import React, { useState } from 'react'
 

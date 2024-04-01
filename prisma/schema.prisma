@@ -17,8 +17,7 @@ model User {
   id       String  @id @default(uuid())
   email    String  @unique
   password String
-  name     String?
-  address  String?
+  info     String?
   orders   Order[]
 }
 
@@ -29,5 +28,5 @@ model Order {
   total     Float
 
   userEmail String
-  user   User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  user      User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
 }

@@ -2,17 +2,14 @@ import React from 'react'
 import { Search, ShoppingBag, User } from "lucide-react"
 import Link from 'next/link'
 import CategoriesMenu from './categories-menu'
-import { getSession } from '@/lib/auth'
-import { SessionProps } from '@/app/user/page'
-import { getLocalOrder, ProductForOrderProps } from '@/app/_actions/localOrder'
+import { getLocalOrder } from '@/app/[category]/[product]/_actions/localOrder'
+import { getSession } from '@/app/user/_actions/user'
+import { ProductForOrderProps, SessionProps } from '@/lib/schema'
+import { cn } from '@/lib/utils'
 
-type Props = {}
-
-export default async function Header({ }: Props) {
+export default async function Header() {
  const session: SessionProps = await getSession();
  const order: any = await getLocalOrder();
-
- console.log();
 
  return (
   <header>
@@ -33,22 +30,23 @@ export default async function Header({ }: Props) {
     <div className='flex items-center gap-6'>
      <Link
       href={'/user'}
-      className='flex flex-nowrap'>
-      <User />
-      <span>{session?.name?.slice(0, 1).toUpperCase()}</span>
+     >
+      <User className={cn("", session?.email && "stroke-green-800")} />
      </Link>
      <Link href={'/cart'} className='relative'>
       <ShoppingBag />
-      {order && <span
-       className='absolute -top-2 -right-2 bg-orange-600 text-white rounded-full w-5 h-5 aspect-square flex items-center justify-center text-xs'>
-       {order.products.reduce(
-        (acc: number, el: ProductForOrderProps) => {
-         const res = acc + el.quantity;
-         return res;
-        },
-        0
-       )}
-      </span>}
+      {order && (
+       <span
+        className='absolute -top-2 -right-2 bg-orange-600 text-white rounded-full w-5 h-5 aspect-square flex items-center justify-center text-xs'>
+        {order.products.reduce(
+         (acc: number, el: ProductForOrderProps) => {
+          const res = acc + el.quantity;
+          return res;
+         },
+         0
+        )}
+       </span>
+      )}
      </Link>
     </div>
    </div>

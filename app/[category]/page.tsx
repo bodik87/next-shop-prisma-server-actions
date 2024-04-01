@@ -2,21 +2,12 @@ import React, { Suspense } from 'react'
 import Link from 'next/link'
 import Image from "next/image";
 import { CATEGORIES, PRODUCTS } from '@/data'
-import { ShoppingBag } from 'lucide-react'
 import { cn } from '@/lib/utils';
 import CategoryBreadcrumbs from './_components/CategoryBreadcrumbs';
+import { PageSearchParams } from '@/lib/schema';
+import Fallback from '@/components/ui/Fallback';
 
-type PageSearchParams = {
-  id: string
-}
-
-type Props = {
-  searchParams: PageSearchParams
-}
-
-function SearchBarFallback() {
-  return <div className='wrapper py-5'>Loading...</div>
-}
+type Props = { searchParams: PageSearchParams }
 
 export default function Category({ searchParams }: Props) {
   const id = searchParams.id
@@ -27,7 +18,7 @@ export default function Category({ searchParams }: Props) {
 
   return (
     <section className=''>
-      <Suspense fallback={<SearchBarFallback />}>
+      <Suspense fallback={<Fallback />}>
 
         <div className="wrapper pt-5 pb-3">
           <CategoryBreadcrumbs id={id} />
@@ -67,22 +58,9 @@ export default function Category({ searchParams }: Props) {
 
                     <div className='mt-2 flex justify-between items-end'>
                       <p className='font-bold text-xl'>{el.price} zl</p>
-
-                      {/* {el.isAvailable &&
-                        <button
-                          className={cn('bg-green-500 p-2.5 rounded-xl font-bold text-lg',
-                            el.isAvailable ? "bg-green-300" : "bg-gray-200",
-                            el.isAvailable && "bg-red-400"
-                          )}>
-                          <ShoppingBag />
-                        </button>
-                      } */}
                     </div>
-
-
                   </Link>
                 </div>
-
             )}
           </div>
         </div>

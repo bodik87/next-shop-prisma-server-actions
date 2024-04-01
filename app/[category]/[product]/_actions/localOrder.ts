@@ -1,15 +1,9 @@
 "use server";
 
-import { decrypt, encrypt } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-
-export type ProductForOrderProps = {
-  id: string;
-  productId: number;
-  quantity: number;
-  price: number;
-};
+import { decrypt, encrypt } from "../../../user/_actions/user";
+import { ProductForOrderProps } from "@/lib/schema";
 
 export async function getLocalOrder() {
   const order = cookies().get("order")?.value;

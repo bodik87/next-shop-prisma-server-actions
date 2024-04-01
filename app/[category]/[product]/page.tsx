@@ -7,19 +7,12 @@ import Image from 'next/image'
 import Description from './_components/Description'
 import ProductBreadcrumbs from './_components/ProductBreadcrumbs'
 import AddToCart from './_components/AddToCart'
-import { getSession } from '@/lib/auth'
-import { SessionProps } from '@/app/user/page'
-
-type PageSearchParams = {
-  id: string
-}
+import { getSession } from '@/app/user/_actions/user'
+import { PageSearchParams, SessionProps } from '@/lib/schema'
+import Fallback from '@/components/ui/Fallback'
 
 type Props = {
   searchParams: PageSearchParams
-}
-
-function SearchBarFallback() {
-  return <div className='wrapper py-5'>Loading...</div>
 }
 
 export default async function Product({ searchParams }: Props) {
@@ -42,7 +35,7 @@ export default async function Product({ searchParams }: Props) {
 
   return (
     <section className=''>
-      <Suspense fallback={<SearchBarFallback />}>
+      <Suspense fallback={<Fallback />}>
         <div className="wrapper py-5">
 
           <ProductBreadcrumbs

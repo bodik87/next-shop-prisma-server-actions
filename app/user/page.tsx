@@ -1,10 +1,10 @@
 import React from 'react'
 import { redirect } from "next/navigation";
-import { getSession, logout } from "@/lib/auth";
 import LoginForm from './_components/LoginForm';
 import UpdateForm from './_components/UpdateForm';
-import UpdateUserInformation from './_components/UpdateUserInformation';
-import { getLocalOrder } from '../_actions/localOrder';
+import { getLocalOrder } from '../[category]/[product]/_actions/localOrder';
+import { getSession, logout } from './_actions/user';
+import { SessionProps } from '@/lib/schema';
 
 export const DEFAULT_USER = {
  id: "0000",
@@ -12,21 +12,9 @@ export const DEFAULT_USER = {
  password: "unregistered"
 }
 
-export type SessionProps = {
- email: string,
- name?: string,
- address?: string,
- expires: string,
- iat: Date,
- exp: Date
-}
-
 export default async function User() {
  const session: SessionProps = await getSession();
  const order: any = await getLocalOrder();
-
- console.log(order);
-
 
  return (
   <section>
@@ -40,15 +28,12 @@ export default async function User() {
       <b className='block mt-4'>Email</b>
       <p>{session.email}</p>
 
-      {session.name ? (
+      {session.info ? (
        <>
-        <b className='block mt-4'>Name</b>
-        <p>{session.name}</p>
+        <b className='block mt-4'>Info</b>
+        <p>{session.info}</p>
 
-        <b className='block mt-4'>Address</b>
-        <p>{session.address}</p>
-
-        <UpdateUserInformation email={session.email} />
+        <UpdateForm email={session.email} />
        </>
       ) : <UpdateForm email={session.email} />}
 

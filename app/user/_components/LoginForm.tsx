@@ -2,12 +2,12 @@
 
 import React from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
-import { login } from '@/lib/auth'
+import { enter } from '../_actions/user'
 
 type Props = {}
 
 export default function LoginForm({ }: Props) {
- const [state, formAction] = useFormState(login, null)
+ const [state, formAction] = useFormState(enter, null)
  const { pending } = useFormStatus()
 
  return (
@@ -22,12 +22,10 @@ export default function LoginForm({ }: Props) {
     required
     className='w-full pl-4 pr-10 py-4 rounded-xl border outline-none'
    />
-   {/* <small className='font-bold text-red-500'>{state?.error?.email?._errors[0]}</small> */}
    <input
     type="password"
     name="password"
     placeholder="Password"
-    min={3}
     required
     className='w-full pl-4 pr-10 py-4 rounded-xl border outline-none'
    />

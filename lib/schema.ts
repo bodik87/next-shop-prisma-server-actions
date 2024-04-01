@@ -1,6 +1,15 @@
-import { z } from "zod";
+export type SessionProps = {
+  email: string;
+  info?: string;
+};
 
-export const LoginFormDataSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(3, "Min 3"),
-});
+export type PageSearchParams = {
+  id: string;
+};
+
+export type ProductForOrderProps = {
+  id: string;
+  productId: number;
+  quantity: number;
+  price: number;
+};

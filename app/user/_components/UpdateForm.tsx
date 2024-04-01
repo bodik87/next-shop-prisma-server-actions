@@ -1,8 +1,8 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
-import { updateUser } from '@/lib/auth'
+import { updateUser } from '../_actions/user'
 
 type Props = {
  email: string
@@ -11,29 +11,22 @@ type Props = {
 export default function UpdateForm({ email }: Props) {
  const [state, formAction] = useFormState(updateUser, null)
  const { pending } = useFormStatus()
+ // const [visible, setVisible] = useState(false)
 
  return (
   <>
-   <b className='block mt-8'>Add name and adress for delivery</b>
+   <b className='block mt-8'>Edit delivery info</b>
 
    <form
     action={formAction}
-    className='mt-4 max-w-sm space-y-3'
+    className='mt-4 max-w-sm'
    >
     <input type="hidden" name="email" value={email} />
 
     <input
      type="text"
-     name="name"
-     placeholder="Name"
-     required
-     className='w-full pr-10 py-2 bg-transparent border-b-black border outline-none'
-    />
-
-    <input
-     type="text"
-     name="address"
-     placeholder="Address"
+     name="info"
+     placeholder="Name, address"
      required
      className='w-full pr-10 py-2 bg-transparent border-b-black border outline-none'
     />
@@ -42,7 +35,7 @@ export default function UpdateForm({ email }: Props) {
     <button
      type='submit'
      disabled={pending}
-     className="w-fit bg-orange-600 disabled:bg-gray-400 text-white flex items-center justify-center px-4 py-1.5 rounded-md"
+     className="mt-4 w-fit bg-orange-600 disabled:bg-gray-400 text-white flex items-center justify-center px-4 py-1.5 rounded-md"
     >
      Update
     </button >
