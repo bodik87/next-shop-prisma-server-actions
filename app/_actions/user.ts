@@ -36,6 +36,21 @@ export async function updateUser(state: any, formData: FormData) {
       cookies().set("session", session, { expires, httpOnly: true });
     } catch (error) {
       return { error };
+    } finally {
+      // Update local order
+      const existedLocalOrder = cookies().get("order")?.value;
+      if (existedLocalOrder) {
+        const parsedOrder = await decrypt(existedLocalOrder);
+
+        const order = await encrypt({
+          userEmail: email,
+          products: parsedOrder.products,
+          info,
+          total: parsedOrder.total,
+        });
+
+        cookies().set("order", order, { httpOnly: true });
+      }
     }
   } else {
     return { message: "This user is not exist" };
@@ -81,6 +96,7 @@ export async function enter(state: any, formData: FormData) {
       const order = await encrypt({
         userEmail: email,
         products: parsedOrder.products,
+        info: existedUser?.info,
         total: parsedOrder.total,
       });
 

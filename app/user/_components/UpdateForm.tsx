@@ -1,23 +1,33 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { updateUser } from '../../_actions/user'
 
 type Props = {
- email: string
+ email: string,
+ info?: string
 }
 
-export default function UpdateForm({ email }: Props) {
+export default function UpdateForm({ email, info }: Props) {
  const [state, formAction] = useFormState(updateUser, null)
  const { pending } = useFormStatus()
- // const [visible, setVisible] = useState(false)
+ const [visible, setVisible] = useState(false)
+
+ useEffect(() => {
+  setVisible(false)
+ }, [info])
+
 
  return (
   <>
-   <b className='block mt-8'>Edit delivery info</b>
+   {<button
+    onClick={() => setVisible(!visible)}
+    className='mt-8 w-fit bg-black disabled:bg-gray-400 text-white flex items-center justify-center px-4 py-1.5 rounded-md'>
+    {visible ? "Close" : "Edit delivery info"}
+   </button>}
 
-   <form
+   {visible && <form
     action={formAction}
     className='mt-4 max-w-sm'
    >
@@ -26,7 +36,7 @@ export default function UpdateForm({ email }: Props) {
     <input
      type="text"
      name="info"
-     placeholder="Name, address"
+     placeholder="Name, phone, address"
      required
      className='w-full pr-10 py-2 bg-transparent border-b-black border outline-none'
     />
@@ -39,7 +49,7 @@ export default function UpdateForm({ email }: Props) {
     >
      Update
     </button >
-   </form>
+   </form>}
   </>
  )
 }

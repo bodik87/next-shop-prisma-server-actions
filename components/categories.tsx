@@ -35,7 +35,7 @@ export default function Categories() {
    </button>
 
    <Transition appear show={isOpen} as={Fragment}>
-    <Dialog as="div" className="fixed inset-0 wrapper" onClose={closeModal}>
+    <Dialog as="div" className="fixed inset-0 wrapper z-10" onClose={closeModal}>
      <div className="relative max-w-xs mr-auto">
       <Transition.Child
        as={Fragment}
@@ -66,26 +66,25 @@ export default function Categories() {
            pathname: CATEGORIES[0].slug,
            query: { id: CATEGORIES[0].id }
           }}
-          className="flex w-full items-center p-3 whitespace-nowrap">
+          className="flex w-full items-center py-3 px-4 whitespace-nowrap">
           {CATEGORIES[0].title}
          </Link>
 
          <Disclosure>
           {({ open }) => (
            <>
-            <Disclosure.Button className="flex gap-2 w-full bg-gray-200 p-3 text-left font-medium focus:outline-none">
+            <Disclosure.Button className="flex gap-2 w-full bg-gray-100 border-y p-3 text-left font-medium focus:outline-none">
              <LayoutList />
              <span>SubCat</span>
              <ChevronDown className={`ml-auto ${open && "rotate-180"}`} />
-
             </Disclosure.Button>
-            <Disclosure.Panel className="bg-gray-100">
+            <Disclosure.Panel>
              <Link
               href={{
                pathname: CATEGORIES[1].slug,
                query: { id: CATEGORIES[1].id }
               }}
-              className="flex w-full items-center p-3 ml-2 whitespace-nowrap">
+              className="flex w-full items-center py-3 px-4 ml-2 whitespace-nowrap border-b">
 
               {CATEGORIES[1].title}
              </Link>
@@ -99,7 +98,7 @@ export default function Categories() {
            pathname: CATEGORIES[2].slug,
            query: { id: CATEGORIES[2].id }
           }}
-          className="flex w-full items-center p-3">
+          className="flex w-full items-center py-3 px-4">
 
           {CATEGORIES[2].title}
          </Link>

@@ -98,6 +98,7 @@ export default async function Product({ searchParams }: Props) {
                   productId={product.id}
                   price={product.price}
                   inCart={localOrder?.products?.some((item) => item.productId === product.id)}
+                  info={session?.info}
                 /> :
                 <button
                   type='button'

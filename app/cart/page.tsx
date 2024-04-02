@@ -106,23 +106,43 @@ export default async function Cart({ }: Props) {
                 )} items</span>
               </div>
 
-              <p className='font-bold mt-4 text-xs'>Customer</p>
-              <p>{localOrder.userEmail}</p>
+              {localOrder.userEmail === session?.email && localOrder.info && (
+                <>
+                  <p className='font-bold mt-4 text-xs'>Customer</p>
+                  <p>{localOrder.userEmail}</p>
 
-              <p className='font-bold mt-4 text-xs'>Info</p>
-              <p>{localOrder.info}</p>
+                  <p className='font-bold mt-4 text-xs'>Info</p>
+                  <p>{localOrder.info}</p>
+
+                  <Link
+                    className='mt-1 block w-fit bg-gray-200 px-2 py-1 rounded-md text-sm'
+                    href={"/user"}>
+                    Edit delivery info
+                  </Link>
+                </>
+              )
+              }
 
               <div className='flex justify-between items-center'>
                 <h2>Total:</h2>
                 <h2>{localOrder.total} zl</h2>
               </div>
 
-              <button
+              {localOrder.userEmail === session?.email && localOrder.info ? (<button
                 className={cn("w-full bg-black disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
                   true && "mt-4")}
               >
                 Buy
-              </button>
+              </button>) : (
+                <Link
+                  href={"/user"}
+                  className='mt-4 w-full bg-black disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg'
+                >
+                  {!session && "Login to buy"}
+                  {session && !localOrder.info && "Add delivery information"}
+                  {/* {!localOrder.info ? "Add delivery information" : "Login to buy"} */}
+                </Link>
+              )}
             </div>
           </section>
           : (<div className='mt-4'>No items</div>)}

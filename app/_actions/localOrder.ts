@@ -13,7 +13,8 @@ export async function getLocalOrder() {
 
 export async function createLocalOrder(
   userEmail: string,
-  product: ProductForOrderProps
+  product: ProductForOrderProps,
+  info: string | undefined
 ) {
   try {
     const existedLocalOrder = cookies().get("order")?.value;
@@ -22,6 +23,7 @@ export async function createLocalOrder(
       const order = await encrypt({
         userEmail,
         products: [product],
+        info,
         total: product.price * product.quantity,
       });
 
@@ -47,6 +49,7 @@ export async function createLocalOrder(
         const order = await encrypt({
           userEmail,
           products: parsedOrder.products,
+          info,
           total,
         });
 

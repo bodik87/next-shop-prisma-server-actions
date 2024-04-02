@@ -27,9 +27,9 @@ export default async function User() {
         <b className='block mt-4'>Info</b>
         <p>{session.info}</p>
 
-        <UpdateForm email={session.email} />
+        <UpdateForm email={session.email} info={session.info} />
        </>
-      ) : <UpdateForm email={session.email} />}
+      ) : <UpdateForm email={session.email} info={session.info} />}
 
       <form
        action={async () => {
@@ -44,8 +44,8 @@ export default async function User() {
      </>
     }
 
-    <pre className="mt-2">{JSON.stringify(session, null, 2)}</pre>
-    <pre className="mt-2">{JSON.stringify(localOrder, null, 2)}</pre>
+    <pre className="mt-2 text-sm">{JSON.stringify(session, null, 2)}</pre>
+    <pre className="mt-2 text-sm">{JSON.stringify(localOrder, null, 2)}</pre>
    </div>
   </section >
  )

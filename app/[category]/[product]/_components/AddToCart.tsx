@@ -11,9 +11,10 @@ type Props = {
   productId: number
   price: number
   inCart: boolean
+  info: string | undefined
 }
 
-export default function AddToCart({ isAvailable, userEmail, productId, price, inCart }: Props) {
+export default function AddToCart({ isAvailable, userEmail, productId, price, inCart, info }: Props) {
 
   const [quantity, setQuantity] = useState(1)
   const [error, setError] = useState<null | string>(null)
@@ -24,9 +25,9 @@ export default function AddToCart({ isAvailable, userEmail, productId, price, in
     const product = { id: uuidv4(), productId, quantity, price }
     try {
       if (userEmail) {
-        await createLocalOrder(userEmail, product)
+        await createLocalOrder(userEmail, product, info)
       } else {
-        await createLocalOrder("unregisteredUser@mail.com", product)
+        await createLocalOrder("unregisteredUser@mail.com", product, undefined)
       }
     } catch (error) {
       console.log(error)
