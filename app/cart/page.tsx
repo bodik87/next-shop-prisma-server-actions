@@ -109,7 +109,7 @@ export default async function Cart({ }: Props) {
               <p className='font-bold mt-4 text-xs'>Customer</p>
               <p>{localOrder.userEmail}</p>
 
-              <p className='font-bold mt-4 text-xs'>Address</p>
+              <p className='font-bold mt-4 text-xs'>Info</p>
               <p>{localOrder.info}</p>
 
               <div className='flex justify-between items-center'>

@@ -8,8 +8,9 @@ import Description from './_components/Description'
 import ProductBreadcrumbs from './_components/ProductBreadcrumbs'
 import AddToCart from './_components/AddToCart'
 import { getSession } from '@/app/_actions/user'
-import { PageSearchParams, SessionProps } from '@/lib/schema'
+import { LocalOrderProps, PageSearchParams, SessionProps } from '@/lib/schema'
 import Fallback from '@/components/ui/Fallback'
+import { getLocalOrder } from '@/app/_actions/localOrder'
 
 type Props = {
   searchParams: PageSearchParams
@@ -17,6 +18,8 @@ type Props = {
 
 export default async function Product({ searchParams }: Props) {
   const session: SessionProps = await getSession();
+  const localOrder: LocalOrderProps = await getLocalOrder();
+
   const id = searchParams.id
 
   const product = PRODUCTS
@@ -94,6 +97,7 @@ export default async function Product({ searchParams }: Props) {
                   userEmail={session?.email}
                   productId={product.id}
                   price={product.price}
+                  inCart={localOrder?.products?.some((item) => item.productId === product.id)}
                 /> :
                 <button
                   type='button'
