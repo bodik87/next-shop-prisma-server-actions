@@ -9,6 +9,7 @@ import { getLocalOrder } from '../_actions/localOrder';
 import DeleteProduct from './_components/DeleteProduct';
 import IncrementButton from './_components/IncrementButton';
 import DecrementButton from './_components/DecrementButton';
+import AddToDatabase from './_components/AddToDatabase';
 
 type Props = {}
 
@@ -128,12 +129,9 @@ export default async function Cart({ }: Props) {
                 <h2>{localOrder.total} zl</h2>
               </div>
 
-              {localOrder.userEmail === session?.email && localOrder.info ? (<button
-                className={cn("w-full bg-black disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
-                  true && "mt-4")}
-              >
-                Buy
-              </button>) : (
+              {localOrder.userEmail === session?.email && localOrder.info ? (
+                <AddToDatabase order={localOrder} />
+              ) : (
                 <Link
                   href={"/user"}
                   className='mt-4 w-full bg-black disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg'

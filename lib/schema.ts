@@ -1,3 +1,5 @@
+import { JsonValue } from "@prisma/client/runtime/library";
+
 export type PageSearchParams = {
   id: string;
 };
@@ -21,4 +23,12 @@ export type LocalOrderProps = {
   info?: string;
   iat: Date;
   exp: Date;
+};
+
+export type PrismaOrderProps = {
+  id: string;
+  total: number;
+  info: string;
+  products: any;
+  createdAt: Date;
 };

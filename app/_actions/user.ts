@@ -19,6 +19,20 @@ export async function createUser(email: string, password: string) {
   }
 }
 
+export async function getUserById(id: string) {
+  try {
+    const item = await prisma.user.findUnique({
+      where: { id },
+      include: {
+        orders: true, // Включить все заказы пользователя
+      },
+    });
+    return { item };
+  } catch (error) {
+    return { error };
+  }
+}
+
 export async function updateUser(state: any, formData: FormData) {
   const email = formData.get("email") as string;
   const info = formData.get("info") as string;

@@ -30,10 +30,10 @@ export default async function Product({ searchParams }: Props) {
     .filter(category =>
       category.id === Number(product.categoryId))[0].slug}/`
 
-  const currentProduct = (parametr: any) => {
+  const currentProduct = (item: any) => {
     return PRODUCTS
       .filter(product =>
-        product.id === Number(parametr.productId))[0]
+        product.id === Number(item.productId))[0]
   }
 
   return (

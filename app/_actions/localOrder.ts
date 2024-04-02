@@ -67,6 +67,7 @@ export async function createLocalOrder(
         const order = await encrypt({
           userEmail,
           products: parsedOrder.products,
+          info,
           total,
         });
 

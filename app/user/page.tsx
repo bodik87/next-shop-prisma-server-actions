@@ -3,12 +3,18 @@ import { redirect } from "next/navigation";
 import LoginForm from './_components/LoginForm';
 import UpdateForm from './_components/UpdateForm';
 import { getLocalOrder } from '../_actions/localOrder';
-import { getSession, logout } from '../_actions/user';
+import { getSession, getUserById, logout } from '../_actions/user';
 import { LocalOrderProps, SessionProps } from '@/lib/schema';
+import Orders from './_components/Orders';
 
 export default async function User() {
  const session: SessionProps = await getSession();
  const localOrder: LocalOrderProps = await getLocalOrder();
+
+ const { item }: any = await getUserById("c9e34d0f-075c-4cc7-927d-5e410b7836a5")
+
+ console.log(item);
+
 
  return (
   <section>
@@ -43,6 +49,8 @@ export default async function User() {
       </form>
      </>
     }
+
+    {item?.orders && <Orders orders={item?.orders} />}
 
     <pre className="mt-2 text-sm">{JSON.stringify(session, null, 2)}</pre>
     <pre className="mt-2 text-sm">{JSON.stringify(localOrder, null, 2)}</pre>
