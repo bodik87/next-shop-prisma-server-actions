@@ -13,9 +13,6 @@ export default async function User() {
 
  const { item }: any = await getUserById("c9e34d0f-075c-4cc7-927d-5e410b7836a5")
 
- console.log(item);
-
-
  return (
   <section>
    <div className="wrapper pb-5">

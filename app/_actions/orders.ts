@@ -7,13 +7,14 @@ import { cookies } from "next/headers";
 export async function addOrderToDatabase(state: any, order: LocalOrderProps) {
   try {
     if (!order) return;
-    const products = order.products.map((product) => JSON.stringify(product));
+    const { products } = order;
+    const JSONproducts = JSON.stringify(products);
     const item = await prisma.order.create({
       data: {
         total: order.total,
         userEmail: order.userEmail,
         info: order.info as string,
-        products,
+        products: JSONproducts,
       },
     });
     cookies().delete("order");

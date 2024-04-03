@@ -20,7 +20,7 @@ model Order {
   userEmail String
   total     Float
   info      String
-  products  Json
+  products  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
