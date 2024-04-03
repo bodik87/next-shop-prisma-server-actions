@@ -34,9 +34,9 @@ export async function generateMetadata(
         product.id === Number(id))[0].title + PRODUCTS
           .filter(product =>
             product.id === Number(id))[0].code,
-    openGraph: {
-      images: '/products/1.png',
-    },
+    // openGraph: {
+    //   images: '/products/1.png',
+    // },
   }
 }
 
@@ -140,7 +140,6 @@ export default async function Product({ searchParams }: Props) {
               </a>
             </div>
           </section>
-
 
           {product.analogues.length > 0 &&
             <>
