@@ -19,10 +19,10 @@ export async function createUser(email: string, password: string) {
   }
 }
 
-export async function getUserById(id: string) {
+export async function getUserByEmail(email: string) {
   try {
     const item = await prisma.user.findUnique({
-      where: { id },
+      where: { email },
       include: {
         orders: true, // Включить все заказы пользователя
       },

@@ -24,13 +24,12 @@ export default function Orders({ orders }: Props) {
         product.id === Number(item.productId))[0]
   }
 
-
   return (
-    <Disclosure defaultOpen={orders.length > 0}>
+    <Disclosure defaultOpen={orders.length < 2}>
       {({ open }) => (
         <>
           <Disclosure.Button className="mt-4 flex gap-2 w-fit justify-between rounded-lg pt-4 text-left font-medium focus:outline-none group">
-            <b>Existed orders</b>
+            <b>{`Existed orders (${orders.length})`}</b>
             <ChevronDown className={`${open && "rotate-180"} group-hover:stroke-green-600`} />
           </Disclosure.Button>
 

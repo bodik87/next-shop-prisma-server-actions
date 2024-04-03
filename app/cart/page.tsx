@@ -143,7 +143,15 @@ export default async function Cart({ }: Props) {
               )}
             </div>
           </section>
-          : (<div className='mt-4'>No items</div>)}
+          : (
+            <>
+              <p className='mt-4'>No items</p>
+              <Link
+                href={"/"}
+                className='mt-2 w-fit bg-black disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-1 rounded-lg'
+              >Home</Link>
+            </>
+          )}
 
 
       </div>
