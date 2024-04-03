@@ -49,7 +49,7 @@ export default async function Product({ searchParams }: Props) {
 
           <section className='mt-4 flex flex-col lg:flex-row gap-4'>
             <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8 shadow-md'>
-              <div className=' flex flex-col md:flex-row gap-4'>
+              <div className='flex flex-col md:flex-row gap-4'>
                 <Image
                   src={product.images[0]}
                   alt={"Img"}

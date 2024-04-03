@@ -36,7 +36,7 @@ export default function Category({ searchParams }: Props) {
                 <div key={el.id} className='w-full'>
                   <Link
                     href={{ pathname: categoryHref + el.slug + el.code, query: { id: el.id } }}
-                    className={cn("flex flex-col h-full  p-3 rounded-xl w-full shadow-md relative",
+                    className={cn("flex flex-col h-full  p-3 rounded-xl w-full shadow-md md:hover:shadow-xl transition-all relative",
                       el.isAvailable ? "bg-white" : "bg-gray-100")}
                   >
                     <Image
