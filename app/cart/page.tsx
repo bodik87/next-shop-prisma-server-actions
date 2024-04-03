@@ -36,7 +36,6 @@ export default async function Cart({ }: Props) {
           <section className='mt-4 flex flex-col lg:flex-row rounded-lg shadow-md'>
             <div className='p-4 w-full lg:w-2/3 bg-white rounded-t-lg lg:rounded-r-none lg:rounded-l-lg flex flex-col items-start md:flex-row gap-8'>
               <div className='w-full'>
-
                 <div className='flex flex-col gap-3'>
                   {localOrder.products.
                     sort((a, b): any => (a.price as any > b.price as any) - (a.price as any < b.price as any)).
@@ -65,18 +64,14 @@ export default async function Cart({ }: Props) {
                           </div>
                         </Link>
 
-
                         <div className='w-full flex gap-4 items-center justify-between'>
-
                           <div className='max-w-44 w-full flex justify-between border-2 rounded-xl relative'>
                             <DecrementButton id={el.id} />
-
                             <input
                               type='number'
                               readOnly
                               value={el.quantity}
                               className='w-full text-center font-bold border-x-2 flex items-center justify-center' />
-
                             <IncrementButton id={el.id} />
                           </div>
 
@@ -89,9 +84,7 @@ export default async function Cart({ }: Props) {
                       </div>
                     ))}
                 </div>
-
               </div>
-
             </div>
 
             <div className='w-full lg:w-1/3 min-w-[300px] bg-gray-100 p-4 rounded-b-lg lg:rounded-r-lg lg:rounded-l-none'>
@@ -137,7 +130,6 @@ export default async function Cart({ }: Props) {
                 >
                   {!session && "Login to buy"}
                   {session && !localOrder.info && "Add delivery information"}
-                  {/* {!localOrder.info ? "Add delivery information" : "Login to buy"} */}
                 </Link>
               )}
             </div>
@@ -151,8 +143,6 @@ export default async function Cart({ }: Props) {
               >Home</Link>
             </>
           )}
-
-
       </div>
     </section>
   )

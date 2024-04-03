@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { LocalOrderProps } from "@/lib/schema";
 import { cookies } from "next/headers";
 
-export async function addOrderToDatabase(state: any, order: LocalOrderProps) {
+export async function addOrderToDatabase(order: LocalOrderProps) {
   try {
     if (!order) return;
     const { products } = order;
