@@ -30,7 +30,7 @@ export const PRODUCTS = [
     price: 150.5,
     oldPrice: 170,
     categoryId: 1,
-    images: ["/products/1.png"],
+    images: ["/products/0.png"],
     description: "Description Product 1",
     isAvailable: true,
     sizeOptions: [],
@@ -44,7 +44,7 @@ export const PRODUCTS = [
     price: 39,
     oldPrice: 45,
     categoryId: 2,
-    images: ["/products/2.png"],
+    images: ["/products/0.png"],
     description: "Description Product 2",
     isAvailable: false,
     sizeOptions: [
@@ -62,7 +62,7 @@ export const PRODUCTS = [
     price: 140,
     oldPrice: 140,
     categoryId: 2,
-    images: ["/products/3.png"],
+    images: ["/products/0.png"],
     description: "Description Product 3",
     isAvailable: true,
     sizeOptions: [
@@ -80,7 +80,7 @@ export const PRODUCTS = [
     price: 350,
     oldPrice: 350,
     categoryId: 2,
-    images: ["/products/4.png"],
+    images: ["/products/0.png"],
     description: "Description Product 4",
     isAvailable: true,
     sizeOptions: [
