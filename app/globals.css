@@ -28,7 +28,7 @@ input::-webkit-inner-spin-button {
 }
 
 h2 {
-  @apply mt-4 font-bold text-2xl;
+  @apply font-bold text-2xl;
 }
 
 ::-webkit-scrollbar {

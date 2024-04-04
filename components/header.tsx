@@ -18,14 +18,14 @@ export default async function Header() {
      <b className='text-xl whitespace-nowrap'>Shop</b>
     </Link>
 
-    <div className='relative max-w-md w-full'>
+    {/* <div className='relative max-w-md w-full'>
      <input
       type="search"
       className='w-full pl-4 pr-10 py-2 rounded-xl border outline-none'
       placeholder='Search'
      />
      <Search className='absolute right-3 top-1/2 -translate-y-1/2' />
-    </div>
+    </div> */}
 
     <div className='flex items-center gap-6'>
      <Link

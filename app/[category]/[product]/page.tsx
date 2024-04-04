@@ -72,7 +72,7 @@ export default async function Product({ searchParams }: Props) {
           />
 
           <section className='mt-4 flex flex-col lg:flex-row gap-4'>
-            <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-8 shadow-md'>
+            <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-4 shadow-md'>
               <div className='flex flex-col md:flex-row gap-4'>
                 <Image
                   src={product.images[0]}
@@ -91,8 +91,8 @@ export default async function Product({ searchParams }: Props) {
 
                 {product.sizeOptions.length > 0 &&
                   <>
-                    <b className='block mt-5'>Sizes</b>
-                    <div className='mt-2 mb-4 flex gap-3'>{product.sizeOptions.map(size => (
+                    <b className='block mt-2'>Sizes</b>
+                    <div className='mt-1 flex gap-3'>{product.sizeOptions.map(size => (
                       <Link
                         key={size.id}
                         href={{
