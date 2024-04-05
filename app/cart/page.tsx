@@ -108,7 +108,7 @@ export default async function Cart({ }: Props) {
                   <p>{localOrder.info}</p>
 
                   <Link
-                    className='mt-1 block w-fit bg-gray-200 px-2 py-1 rounded-md text-sm'
+                    className='mt-1 block w-fit border border-gray-800 px-2 py-1 rounded-md text-sm text-gray-800'
                     href={"/user"}>
                     Edit delivery info
                   </Link>
@@ -117,7 +117,7 @@ export default async function Cart({ }: Props) {
               }
 
               <div className='flex justify-between items-center'>
-                <h2>Total:</h2>
+                <h2 className='mt-4'>Total:</h2>
                 <h2>{localOrder.total} zl</h2>
               </div>
 
