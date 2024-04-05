@@ -52,7 +52,6 @@ export default async function Header() {
    </div>
 
    <div className='wrapper flex items-center gap-4 relative'>
-    {/* <CategoriesMenu /> */}
     <Categories />
    </div>
   </header>

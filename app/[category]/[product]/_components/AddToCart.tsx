@@ -4,6 +4,7 @@ import { createLocalOrder } from '@/app/_actions/localOrder'
 import { cn } from '@/lib/utils'
 import React, { ChangeEvent, useState } from 'react'
 import { useFormStatus } from 'react-dom'
+import { ShoppingBag, Check } from 'lucide-react'
 
 type Props = {
   isAvailable: boolean
@@ -42,15 +43,17 @@ export default function AddToCart({ isAvailable, userEmail, productId, price, in
   return (
     <>
       <b>Price: {price} zl/szt</b>
-      {!inCart && (
-        <>
-          <p className='mt-2 text-3xl font-bold'>{total} zl</p>
 
-          <div className='mt-4 flex justify-between border-2 rounded-xl'>
+      <>
+        <p className='mt-2 text-3xl font-bold'>{total} zl</p>
+
+        <div className='mt-4 flex gap-2 items-center'>
+
+          {!inCart && (<div className='flex border-2 rounded-xl'>
             <button
               disabled={quantity === 1}
               onClick={() => setQuantity(quantity - 1)}
-              className='py-4 px-6 font-bold'>
+              className='w-12 h-12 aspect-square font-bold'>
               -
             </button>
 
@@ -78,17 +81,20 @@ export default function AddToCart({ isAvailable, userEmail, productId, price, in
 
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className='py-4 px-6 font-bold'>
+              className='w-12 h-12 aspect-square font-bold'>
               +
             </button>
           </div>
-          <p className='text-xs font-bold mt-2 text-center text-red-600'>{error}</p>
-        </>
-      )}
+          )}
 
-      <form action={action}>
-        <SubmitButton isAvailable={isAvailable} inCart={inCart} />
-      </form>
+          <form action={action} className={cn('border-2 border-transparent', inCart && "w-full")}
+          >
+            <SubmitButton isAvailable={isAvailable} inCart={inCart} />
+          </form>
+        </div>
+
+        <p className='text-xs font-bold mt-2 text-center text-red-600'>{error}</p>
+      </>
     </>
   )
 }
@@ -100,10 +106,10 @@ function SubmitButton({ isAvailable, inCart }: { isAvailable: boolean, inCart: b
     <button
       type='submit'
       disabled={pending || !isAvailable || inCart}
-      className={cn("w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
-        isAvailable && "mt-4")}
+      className={cn("h-12 bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
+        inCart ? "w-full" : "w-12 aspect-square")}
     >
-      {inCart ? "Already in cart" : "Add to cart"}
+      {inCart ? "Already in cart" : <ShoppingBag />}
     </button>
   )
 }
