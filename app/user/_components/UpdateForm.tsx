@@ -23,7 +23,7 @@ export default function UpdateForm({ email, info }: Props) {
   <>
    {<button
     onClick={() => setVisible(!visible)}
-    className='mt-8 w-fit bg-black disabled:bg-gray-400 text-white flex items-center justify-center px-4 py-1.5 rounded-md'>
+    className='mt-4 w-fit disabled:bg-gray-400 border border-black flex items-center justify-center px-3 py-1.5 rounded-md text-sm'>
     {visible ? "Close" : "Edit delivery info"}
    </button>}
 
@@ -37,6 +37,7 @@ export default function UpdateForm({ email, info }: Props) {
      type="text"
      name="info"
      placeholder="Name, phone, address"
+     defaultValue={info}
      required
      className='w-full pr-10 py-2 bg-transparent border-b-black border outline-none'
     />

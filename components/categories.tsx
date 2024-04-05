@@ -46,7 +46,7 @@ export default function Categories() {
        leaveFrom="opacity-100"
        leaveTo="opacity-0"
       >
-       <div className="fixed inset-0 bg-black/50" />
+       <div className="fixed inset-0 bg-black/20" />
       </Transition.Child>
 
       <div className="flex min-h-full items-center justify-center p-4 text-center">
@@ -59,21 +59,21 @@ export default function Categories() {
         leaveFrom="opacity-100 scale-100 translate-y-0"
         leaveTo="opacity-0 scale-95 -translate-y-2"
        >
-        <Dialog.Panel className="absolute top-32 left-0 w-full transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
+        <Dialog.Panel className="absolute top-28 left-0 w-full transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
 
          <Link
           href={{
            pathname: CATEGORIES[0].slug,
            query: { id: CATEGORIES[0].id }
           }}
-          className="flex w-full items-center py-3 px-4 whitespace-nowrap">
+          className="flex w-full items-center p-4 whitespace-nowrap hover:bg-gray-50">
           {CATEGORIES[0].title}
          </Link>
 
          <Disclosure>
           {({ open }) => (
            <>
-            <Disclosure.Button className="flex gap-2 w-full bg-gray-100 border-y p-3 text-left font-medium focus:outline-none">
+            <Disclosure.Button className="flex gap-2 w-full bg-gray-100 border-y p-4 text-left font-medium focus:outline-none">
              <LayoutList />
              <span>SubCat</span>
              <ChevronDown className={`ml-auto ${open && "rotate-180"}`} />
@@ -84,8 +84,7 @@ export default function Categories() {
                pathname: CATEGORIES[1].slug,
                query: { id: CATEGORIES[1].id }
               }}
-              className="flex w-full items-center py-3 px-4 ml-2 whitespace-nowrap border-b">
-
+              className="flex w-full items-center p-4 pl-8 whitespace-nowrap border-b hover:bg-gray-50">
               {CATEGORIES[1].title}
              </Link>
             </Disclosure.Panel>
@@ -98,8 +97,7 @@ export default function Categories() {
            pathname: CATEGORIES[2].slug,
            query: { id: CATEGORIES[2].id }
           }}
-          className="flex w-full items-center py-3 px-4">
-
+          className="flex w-full items-center p-4 hover:bg-gray-50">
           {CATEGORIES[2].title}
          </Link>
 

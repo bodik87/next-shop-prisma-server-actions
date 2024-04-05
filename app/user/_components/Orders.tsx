@@ -6,6 +6,8 @@ import { ChevronDown } from 'lucide-react'
 import { PrismaOrderProps, ProductForOrderProps } from '@/lib/schema'
 import { PRODUCTS } from '@/data'
 import { formatDate } from '@/lib/date'
+import Image from 'next/image'
+import MasonryGrid from '@/components/ui/MasonryGrid'
 
 type Props = {
   orders: PrismaOrderProps[]
@@ -33,38 +35,54 @@ export default function Orders({ orders }: Props) {
             <ChevronDown className={`${open && "rotate-180"} group-hover:stroke-green-600`} />
           </Disclosure.Button>
 
-          <Disclosure.Panel className="mt-2">
-            {parsedOrders
-              .sort((a, b): any => (a.createdAt as any > b.createdAt as any) - (a.createdAt as any < b.createdAt as any))
-              .map((order, index: number) =>
-                <div key={order.id} className='w-fit mt-4 bg-white p-3 rounded-md'>
-                  <b>{index + 1}.</b>
-                  <p>Total: <b>{order.total} zl</b></p>
-                  <p>Created: {formatDate(order.createdAt)}</p>
-                  <p>Info: {order.info}</p>
+          <Disclosure.Panel>
+            <MasonryGrid>
+              {parsedOrders
+                .sort((a, b): any => (a.createdAt as any > b.createdAt as any) - (a.createdAt as any < b.createdAt as any))
+                .map((order, index: number) =>
+                  <div key={order.id} className='mt-2 first:mt-0 w-full bg-white p-3 rounded-md'>
+                    <b>{index + 1}.</b>
+                    <p>Total: <b>{order.total} zl</b></p>
+                    <p>Created: {formatDate(order.createdAt)}</p>
+                    <p>Info: {order.info}</p>
 
-                  <Disclosure>
-                    {({ open }) => (
-                      <>
-                        <Disclosure.Button className="flex gap-2 w-fit justify-between rounded-lg pt-4 text-left font-medium focus:outline-none group">
-                          <b>Products</b>
-                          <ChevronDown className={`${open && "rotate-180"} group-hover:stroke-green-600`} />
-                        </Disclosure.Button>
+                    <Disclosure>
+                      {({ open }) => (
+                        <>
+                          <Disclosure.Button className="flex gap-2 w-fit justify-between rounded-lg pt-4 text-left font-medium focus:outline-none group">
+                            <b>Products</b>
+                            <ChevronDown className={`${open && "rotate-180"} group-hover:stroke-green-600`} />
+                          </Disclosure.Button>
 
-                        <Disclosure.Panel className="mt-2">
-                          {order.products.map((product, i) => (
-                            <div key={product.id} className='w-full bg-gray-100 p-3 rounded-md text-sm'>
-                              <b>{i + 1}. {currentProduct(product).title}</b>
-                              <p>Purchase price: {product.price} zl</p>
-                              <p>Quantity: {product.quantity} szt</p>
-                            </div>
-                          ))}
-                        </Disclosure.Panel>
-                      </>
-                    )}
-                  </Disclosure>
-                </div>
-              )}
+                          <Disclosure.Panel className="mt-2">
+                            {order.products.map((product, i) => (
+                              <div key={product.id} className='w-full bg-gray-100 p-3 rounded-md text-sm'>
+                                <b>{i + 1}. {currentProduct(product).title}</b>
+                                <div className='mt-1 flex gap-2'>
+                                  <Image
+                                    src={currentProduct(product).images[0]}
+                                    alt={"Img"}
+                                    width={50}
+                                    height={50}
+                                    className="object-contain h-fit bg-gray-200 rounded-lg"
+                                    priority
+                                    quality={100}
+                                  />
+                                  <div>
+                                    <p>Purchase price: {product.price} zl</p>
+                                    <p>Quantity: {product.quantity} szt</p>
+                                  </div>
+                                </div>
+
+                              </div>
+                            ))}
+                          </Disclosure.Panel>
+                        </>
+                      )}
+                    </Disclosure>
+                  </div>
+                )}
+            </MasonryGrid>
           </Disclosure.Panel>
         </>
       )}

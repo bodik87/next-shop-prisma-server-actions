@@ -20,14 +20,14 @@ export default function LoginForm({ }: Props) {
     name="email"
     placeholder="Email"
     required
-    className='w-full pl-4 pr-10 py-4 rounded-xl border outline-none'
+    className='w-full pl-4 pr-10 py-4 rounded-lg border outline-none'
    />
    <input
     type="password"
     name="password"
     placeholder="Password"
     required
-    className='w-full pl-4 pr-10 py-4 rounded-xl border outline-none'
+    className='w-full pl-4 pr-10 py-4 rounded-lg border outline-none'
    />
    <small className='font-bold text-red-500'>{state?.message}</small>
 

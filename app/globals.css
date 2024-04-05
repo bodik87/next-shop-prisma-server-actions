@@ -31,25 +31,16 @@ h2 {
   @apply font-bold text-2xl;
 }
 
+/* Scrollbar */
+
 ::-webkit-scrollbar {
-  @apply w-3;
+  @apply w-2.5;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-white;
+  @apply bg-white rounded-full my-1;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-black;
-}
-
-.swiper-pagination-horizontal {
-  bottom: 0 !important;
-  left: 4px !important;
-  width: fit-content !important;
-}
-
-.swiper-pagination-bullet {
-  width: 6px !important;
-  height: 6px !important;
+  @apply bg-gray-400 rounded-full;
 }
 
 /* Embla */
@@ -91,4 +82,13 @@ h2 {
 }
 .embla__dot--selected:after {
   @apply bg-white shadow;
+}
+
+/* Masonry grid */
+
+.my-masonry-grid {
+  @apply flex w-auto -ml-7 -mr-5;
+}
+.my-masonry-grid_column {
+  @apply pl-2 bg-clip-padding;
 }
