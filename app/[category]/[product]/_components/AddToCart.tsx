@@ -1,9 +1,9 @@
 "use client"
 
-import { v4 as uuidv4 } from 'uuid';
 import { createLocalOrder } from '@/app/_actions/localOrder'
 import { cn } from '@/lib/utils'
 import React, { ChangeEvent, useState } from 'react'
+import { useFormStatus } from 'react-dom'
 
 type Props = {
   isAvailable: boolean
@@ -22,7 +22,7 @@ export default function AddToCart({ isAvailable, userEmail, productId, price, in
   const total = price * quantity
 
   async function action() {
-    const product = { id: uuidv4(), productId, quantity, price }
+    const product = { id: crypto.randomUUID(), productId, quantity, price }
     try {
       if (userEmail) {
         await createLocalOrder(userEmail, product, info)
@@ -86,18 +86,24 @@ export default function AddToCart({ isAvailable, userEmail, productId, price, in
         </>
       )}
 
-
-
       <form action={action}>
-        <button
-          type='submit'
-          disabled={!isAvailable || inCart}
-          className={cn("w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
-            isAvailable && "mt-4")}
-        >
-          {inCart ? "Already in cart" : "Add to cart"}
-        </button>
+        <SubmitButton isAvailable={isAvailable} inCart={inCart} />
       </form>
     </>
+  )
+}
+
+function SubmitButton({ isAvailable, inCart }: { isAvailable: boolean, inCart: boolean }) {
+  const { pending } = useFormStatus()
+
+  return (
+    <button
+      type='submit'
+      disabled={pending || !isAvailable || inCart}
+      className={cn("w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
+        isAvailable && "mt-4")}
+    >
+      {inCart ? "Already in cart" : "Add to cart"}
+    </button>
   )
 }

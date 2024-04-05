@@ -41,7 +41,7 @@ export default function Category({ searchParams }: Props) {
         <div className="wrapper pt-5 pb-3">
           <CategoryBreadcrumbs id={id} />
 
-          <h2>
+          <h2 className='mt-4'>
             {CATEGORIES.filter(category =>
               category.id === Number(id))[0].title}
           </h2>

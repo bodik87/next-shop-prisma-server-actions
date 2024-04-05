@@ -99,7 +99,7 @@ export async function decrementLocalOrder(state: any, formData: FormData) {
   }
 }
 
-export async function deleteProductFromOrder(state: any, formData: FormData) {
+export async function deleteProductFromOrder(formData: FormData) {
   const id = formData.get("id") as string;
   try {
     const existedLocalOrder = cookies().get("order")?.value;

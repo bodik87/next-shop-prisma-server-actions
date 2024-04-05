@@ -30,7 +30,7 @@ export default async function Cart({ }: Props) {
   return (
     <section>
       <div className="wrapper pb-5">
-        <h2>Cart</h2>
+        <h2 className='mt-4'>Cart</h2>
 
         {localOrder ?
           <section className='mt-4 flex flex-col lg:flex-row rounded-lg shadow-md'>
