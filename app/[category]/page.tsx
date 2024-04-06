@@ -38,7 +38,7 @@ export default function Category({ searchParams }: Props) {
     <section className=''>
       <Suspense fallback={<Fallback />}>
 
-        <div className="wrapper pt-5 pb-3">
+        <div className="wrapper px-3 pt-5 pb-3">
           <CategoryBreadcrumbs id={id} />
 
           <h2 className='mt-4'>

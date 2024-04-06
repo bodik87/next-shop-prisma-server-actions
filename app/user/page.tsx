@@ -13,7 +13,7 @@ export default async function User() {
 
  return (
   <section>
-   <div className="wrapper pb-5">
+   <div className="wrapper px-3 pb-5">
     <h2 className='mt-4'>User</h2>
 
     {!session && <LoginForm />}

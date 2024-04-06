@@ -29,7 +29,7 @@ export default async function Cart({ }: Props) {
 
   return (
     <section>
-      <div className="wrapper pb-5">
+      <div className="wrapper px-3 pb-5">
         <h2 className='mt-4'>Cart</h2>
 
         {localOrder ?

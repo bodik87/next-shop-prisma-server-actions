@@ -35,8 +35,8 @@ export default function Categories() {
    </button>
 
    <Transition appear show={isOpen} as={Fragment}>
-    <Dialog as="div" className="fixed inset-0 wrapper z-10" onClose={closeModal}>
-     <div className="relative max-w-xs mr-auto">
+    <Dialog as="div" className="fixed inset-0 px-3 z-30" onClose={closeModal}>
+     <div className="relative wrapper">
       <Transition.Child
        as={Fragment}
        enter="ease-out duration-300"
@@ -59,7 +59,7 @@ export default function Categories() {
         leaveFrom="opacity-100 scale-100 translate-y-0"
         leaveTo="opacity-0 scale-95 -translate-y-2"
        >
-        <Dialog.Panel className="absolute top-28 left-0 w-full transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
+        <Dialog.Panel className="max-w-xs absolute top-[110px] left-0 w-full transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
 
          <Link
           href={{

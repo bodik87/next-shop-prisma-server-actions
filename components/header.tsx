@@ -6,14 +6,15 @@ import { getSession } from '@/app/_actions/user'
 import { ProductForOrderProps, SessionProps } from '@/lib/schema'
 import { cn } from '@/lib/utils'
 import Categories from './categories'
+import HeaderContainer from './ui/HeaderContainer'
 
 export default async function Header() {
  const session: SessionProps = await getSession();
  const order: any = await getLocalOrder();
 
  return (
-  <header>
-   <div className="wrapper py-4 flex items-center justify-between gap-4">
+  <HeaderContainer>
+   <div className="wrapper px-3 py-4 flex items-center justify-between gap-4">
     <Link href={`/`} className='flex items-center gap-4'>
      <b className='text-xl whitespace-nowrap'>Shop</b>
     </Link>
@@ -37,7 +38,7 @@ export default async function Header() {
       <ShoppingBag />
       {order && (
        <span
-        className='absolute -top-2 -right-2 bg-orange-600 text-white rounded-full w-5 h-5 aspect-square flex items-center justify-center text-[8px]'>
+        className='absolute -top-2 -right-2 bg-orange-600 text-white rounded-full w-5 h-5 aspect-square flex items-center justify-center text-[8px] z-30'>
         {order.products.reduce(
          (acc: number, el: ProductForOrderProps) => {
           const res = acc + el.quantity;
@@ -51,9 +52,9 @@ export default async function Header() {
     </div>
    </div>
 
-   <div className='wrapper flex items-center gap-4 relative'>
+   <div className='wrapper px-3 flex items-center gap-4 relative'>
     <Categories />
    </div>
-  </header>
+  </HeaderContainer>
  )
 }

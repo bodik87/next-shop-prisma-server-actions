@@ -63,7 +63,7 @@ export default async function Product({ searchParams }: Props) {
   return (
     <section className=''>
       <Suspense fallback={<Fallback />}>
-        <div className="wrapper py-5">
+        <div className="wrapper px-3 py-5">
 
           <ProductBreadcrumbs
             categoryHref={categoryHref}

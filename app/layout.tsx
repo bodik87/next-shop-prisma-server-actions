@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import "./globals.css";
+import ButtonUp from "@/components/ui/ButtonUp";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NextTopLoader color="#16A34A" height={3} showSpinner={false} shadow={false} />
+        <ButtonUp />
         <main className="min-h-dvh flex flex-col">
           <Header />
           {children}
