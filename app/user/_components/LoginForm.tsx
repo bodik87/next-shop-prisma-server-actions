@@ -3,6 +3,7 @@
 import React from 'react'
 import { useFormState, useFormStatus } from 'react-dom'
 import { enter } from '../../_actions/user'
+import SubmitButton from './SubmitButton'
 
 type Props = {}
 
@@ -30,21 +31,7 @@ export default function LoginForm({ }: Props) {
    />
    <small className='font-bold text-red-500'>{state?.message}</small>
 
-   <SubmitButton />
+   <SubmitButton color='submit' label='Enter' />
   </form>
- )
-}
-
-function SubmitButton() {
- const { pending } = useFormStatus()
-
- return (
-  <button
-   type='submit'
-   disabled={pending}
-   className="w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded"
-  >
-   Enter
-  </button>
  )
 }

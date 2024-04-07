@@ -1,9 +1,9 @@
 "use client"
 
 import React from 'react'
-import { useFormStatus } from 'react-dom';
 import { redirect } from 'next/navigation';
 import { logout } from '@/app/_actions/user';
+import SubmitButton from './SubmitButton';
 
 export default function LogoutForm() {
  return (
@@ -12,23 +12,9 @@ export default function LogoutForm() {
     await logout();
     redirect("/");
    }}
-   className='mt-8'
+   className='mt-8 max-w-xs'
   >
-   <SubmitButton />
+   <SubmitButton color='logout' label='Logout' />
   </form>
- )
-}
-
-function SubmitButton() {
- const { pending } = useFormStatus()
-
- return (
-  <button
-   type='submit'
-   disabled={pending}
-   className="mt-2 px-4 py-1.5 rounded bg-red-600 disabled:bg-red-400 text-white"
-  >
-   Logout
-  </button>
  )
 }

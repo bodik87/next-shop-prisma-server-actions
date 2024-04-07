@@ -105,9 +105,7 @@ export default async function Cart() {
                   <p className='font-bold mt-4 text-xs'>Info</p>
                   <p>{localOrder.info}</p>
 
-                  <Link
-                    className='mt-1 block w-fit border border-gray-800 px-2 py-1 rounded text-sm text-gray-800'
-                    href={"/user"}>
+                  <Link className='info' href={"/user"}>
                     Edit delivery info
                   </Link>
                 </>
