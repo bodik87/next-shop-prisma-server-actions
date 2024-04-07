@@ -13,7 +13,7 @@ export default function LoginForm({ }: Props) {
  return (
   <form
    action={formAction}
-   className='mt-4 max-w-sm mx-auto space-y-3'
+   className='max-w-sm mx-auto space-y-3'
   >
    <input
     type="email"

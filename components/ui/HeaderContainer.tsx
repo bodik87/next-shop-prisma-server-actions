@@ -2,12 +2,10 @@
 
 import React, { useState } from 'react'
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import { usePathname } from 'next/navigation';
 
 type Props = { children: React.ReactNode }
 
 export default function HeaderContainer({ children }: Props) {
- const pathname = usePathname()
  const { scrollY }: any = useScroll();
 
  const [scrollUp, setScrollUp] = useState(true);
@@ -29,16 +27,8 @@ export default function HeaderContainer({ children }: Props) {
  });
 
  return (
-  <>
-   {/* {pathname === "/" && <section className="bg-red-500 h-10 flex items-center text-white">
-    <div className='text-center w-full'>
-     Promo
-    </div>
-   </section>} */}
-
-   <header className={`sticky top-0 ${show && !scrollUp && "-translate-y-[110%]"} ${show && "shadow-xl"} bg-gray-200 transition-all duration-300 z-20`}>
-    {children}
-   </header>
-  </>
+  <header className={`sticky top-0 ${show && !scrollUp && "-translate-y-[110%]"} ${show && "shadow-xl"} bg-gray-200 transition-all duration-300 z-20`}>
+   {children}
+  </header>
  )
 }

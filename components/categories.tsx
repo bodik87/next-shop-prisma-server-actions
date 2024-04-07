@@ -59,7 +59,7 @@ export default function Categories() {
         leaveFrom="opacity-100 scale-100 translate-y-0"
         leaveTo="opacity-0 scale-95 -translate-y-2"
        >
-        <Dialog.Panel className="max-w-xs absolute top-[110px] left-0 w-full transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
+        <Dialog.Panel className="max-w-xs absolute top-[150px] left-0 w-full transform overflow-hidden rounded-lg bg-white text-left align-middle shadow-xl transition-all">
 
          <Link
           href={{

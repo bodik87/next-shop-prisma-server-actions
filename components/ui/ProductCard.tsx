@@ -30,8 +30,7 @@ export default function ProductCard({ item, categoryHref }: Props) {
     }
 
     <p className='mt-2 px-1 font-bold lg:text-lg xl:text-base'>{item.title}</p>
-
-    <p className='px-1 font-bold lg:text-lg xl:text-base'>{item.price} zl</p>
+    <p className='px-1 font-bold lg:text-lg xl:text-base'>{item.price}</p>
    </Link>
   </div>
  )

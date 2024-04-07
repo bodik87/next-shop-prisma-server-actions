@@ -40,7 +40,7 @@ export default function Orders({ orders }: Props) {
                 .map((order, index: number) =>
                   <div key={order.id} className='mt-2 first:mt-0 w-full bg-white p-3 rounded'>
                     <b>{index + 1}.</b>
-                    <p>Total: <b>{order.total} zl</b></p>
+                    <p>Total: <b>{order.total}</b></p>
                     <p>Created: {formatDate(order.createdAt)}</p>
                     <p>Info: {order.info}</p>
 
@@ -67,7 +67,7 @@ export default function Orders({ orders }: Props) {
                                     quality={100}
                                   />
                                   <div>
-                                    <p>Purchase price: {product.price} zl</p>
+                                    <p>Purchase price: {product.price}</p>
                                     <p>Quantity: {product.quantity} szt</p>
                                   </div>
                                 </div>

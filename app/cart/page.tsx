@@ -58,7 +58,7 @@ export default async function Cart() {
                           />
                           <div className='w-full'>
                             <b>{index + 1}. {currentProduct(el.productId.toString()).title}</b>
-                            <p>{currentProduct(el.productId.toString()).price} zl/szt</p>
+                            <p>{currentProduct(el.productId.toString()).price}/szt</p>
                           </div>
                         </Link>
 
@@ -114,7 +114,7 @@ export default async function Cart() {
 
               <div className='mt-4 flex justify-between items-center'>
                 <h2>Total:</h2>
-                <h2>{localOrder.total} zl</h2>
+                <h2>{localOrder.total}</h2>
               </div>
 
               {localOrder.userEmail === session?.email && localOrder.info ? (

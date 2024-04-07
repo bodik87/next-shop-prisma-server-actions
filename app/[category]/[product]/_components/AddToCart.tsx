@@ -42,10 +42,10 @@ export default function AddToCart({ isAvailable, userEmail, productId, price, in
 
   return (
     <>
-      <b>Price: {price} zl/szt</b>
+      <b>Price: {price}/szt</b>
 
       <>
-        <p className='mt-2 text-3xl font-bold'>{total} zl</p>
+        <p className='mt-2 text-3xl font-bold'>{total}</p>
 
         <div className='mt-4 flex gap-4 items-center'>
 
