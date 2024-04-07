@@ -12,7 +12,7 @@ export default function LogoutForm() {
     await logout();
     redirect("/");
    }}
-   className='mt-8 max-w-xs'
+   className='mt-8 max-w-sm'
   >
    <SubmitButton color='logout' label='Logout' />
   </form>

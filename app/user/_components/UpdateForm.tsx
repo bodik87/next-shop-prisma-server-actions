@@ -26,7 +26,7 @@ export default function UpdateForm({ email, info }: Props) {
       {visible &&
         <form
           action={formAction}
-          className='mt-4 max-w-xs'
+          className='mt-4 max-w-sm'
         >
           <input type="hidden" name="email" value={email} />
 
@@ -35,7 +35,7 @@ export default function UpdateForm({ email, info }: Props) {
             placeholder="Name, phone, address"
             defaultValue={info}
             required
-            className='w-full pr-10 pb-2 bg-transparent outline-none'
+            className='w-full pb-2 bg-transparent outline-none'
           />
           <small className='font-bold text-red-500'>{state?.message}</small>
 

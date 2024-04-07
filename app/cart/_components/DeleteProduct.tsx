@@ -24,7 +24,7 @@ function SubmitButton() {
   <button
    type='submit'
    disabled={pending}
-   className='w-9 h-9 mr-2 bg-red-50 disabled:bg-gray-400 flex items-center justify-center rounded-lg active:scale-95'>
+   className='w-9 h-9 mr-2 bg-red-50 disabled:bg-gray-400 flex items-center justify-center rounded active:scale-95'>
    <X />
   </button>
  )

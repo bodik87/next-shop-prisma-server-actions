@@ -2,6 +2,7 @@ import { CATEGORIES, POPULAR_PRODUCTS } from "@/data";
 import { currentProduct } from "@/lib/utils";
 import ProductCard from "@/components/ui/ProductCard";
 import Promo from "@/components/promo";
+import OrderProducts from "@/components/order-products";
 
 export default async function Home() {
 
@@ -29,6 +30,8 @@ export default async function Home() {
               />
           )}
         </div>
+
+        <OrderProducts />
       </div>
     </>
   );

@@ -27,7 +27,7 @@ export default function RootLayout({
         <NextTopLoader color="#16A34A" height={3} showSpinner={false} shadow={false} />
         <ButtonUp />
         <Header />
-        <main className="min-h-[calc(100dvh_-_220px)] flex flex-col pb-4">
+        <main className="min-h-[calc(100dvh_-_210px)] flex flex-col pb-4">
           {children}
         </main>
         <Footer />

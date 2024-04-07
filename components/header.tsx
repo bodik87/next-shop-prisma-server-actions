@@ -13,14 +13,15 @@ export default async function Header() {
  const order: any = await getLocalOrder();
 
  return (
-  <HeaderContainer>
+  // <HeaderContainer>
+  <header>
    <section className="bg-red-500 h-10 flex items-center text-white">
     <div className='text-center w-full'>
      Promo
     </div>
    </section>
 
-   <div className="wrapper py-4 flex items-center justify-between gap-4">
+   <div className="wrapper py-4 pb-1.5 flex items-center justify-between gap-4">
     <Link href={`/`} className='flex items-center gap-4'>
      <b className='text-xl whitespace-nowrap'>Shop</b>
     </Link>
@@ -61,6 +62,7 @@ export default async function Header() {
    <div className='wrapper pb-4 flex items-center gap-4 relative'>
     <Categories />
    </div>
-  </HeaderContainer>
+  </header>
+  // </HeaderContainer>
  )
 }
