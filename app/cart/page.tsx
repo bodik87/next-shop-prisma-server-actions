@@ -135,7 +135,7 @@ export default async function Cart() {
               <p className='my-4'>No items</p>
               <Link
                 href={"/"}
-                className='w-fit bg-black disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-4 py-1 rounded'
+                className='blackButton'
               >
                 Home
               </Link>

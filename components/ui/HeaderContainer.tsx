@@ -13,7 +13,7 @@ export default function HeaderContainer({ children }: Props) {
 
  useMotionValueEvent(scrollY, "change", (latest: any) => {
   const previousScrollY = scrollY.getPrevious();
-  if (latest > previousScrollY && scrollY.current > 150) {
+  if (latest > previousScrollY && scrollY.current > 50) {
    setScrollUp(false);
   } else {
    setScrollUp(true);
