@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import NextTopLoader from 'nextjs-toploader';
 import { Inter } from "next/font/google";
+import NextTopLoader from 'nextjs-toploader';
+import ButtonUp from "@/components/ui/ButtonUp";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import "./globals.css";
-import ButtonUp from "@/components/ui/ButtonUp";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,11 +26,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextTopLoader color="#16A34A" height={3} showSpinner={false} shadow={false} />
         <ButtonUp />
-        <main className="min-h-dvh flex flex-col">
-          <Header />
+        <Header />
+        <main className="min-h-dvh flex flex-col pb-4">
           {children}
-          <Footer />
         </main>
+        <Footer />
       </body>
     </html>
   );

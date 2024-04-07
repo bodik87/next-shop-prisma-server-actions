@@ -1,17 +1,15 @@
 "use client"
 
 import React, { useCallback } from 'react'
-import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
-import { PrevButton, NextButton, usePrevNextButtons } from './ui/EmblaCarouselDotButton'
-import { DotButton, useDotButton } from './ui/EmblaCarouselArrowButtons'
-import Autoplay from 'embla-carousel-autoplay'
-import useEmblaCarousel from 'embla-carousel-react'
 import Link from 'next/link'
 import Image from 'next/image'
+import useEmblaCarousel from 'embla-carousel-react'
+import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
+import Autoplay from 'embla-carousel-autoplay'
+import { PrevButton, NextButton, usePrevNextButtons } from './ui/EmblaCarouselDotButton'
+import { DotButton, useDotButton } from './ui/EmblaCarouselArrowButtons'
 
-type PropType = {
-  options?: EmblaOptionsType
-}
+type PropType = { options?: EmblaOptionsType }
 
 const slides = [
   { id: 1, title: "Img", slideImage: "/1.png" },
@@ -50,7 +48,7 @@ const Carousel: React.FC<PropType> = (props) => {
   return (
     <section className="embla md:w-1/2 relative">
 
-      <div className="overflow-hidden rounded-xl" ref={emblaRef}>
+      <div className="overflow-hidden rounded" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((image) => (
             <div className="embla__slide" key={image.id}>
@@ -60,7 +58,7 @@ const Carousel: React.FC<PropType> = (props) => {
                   alt={image.title}
                   width={650}
                   height={312}
-                  className="w-full h-full rounded-lg"
+                  className="w-full h-full rounded"
                   priority
                   quality={100}
                 />
@@ -71,7 +69,7 @@ const Carousel: React.FC<PropType> = (props) => {
       </div>
 
       {/* Controls */}
-      <div className="absolute bottom-3 inset-x-0 z-10 px-3 mt-2 flex items-end justify-between">
+      <div className="absolute bottom-3 inset-x-0 z-10 px-3 mt-2 flex items-end justify-between opacity-80">
         <div className="flex items-center gap-3">
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />

@@ -1,26 +1,22 @@
 import React, { Suspense } from 'react'
-import { CATEGORIES, PRODUCTS } from '@/data'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Phone } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import Image from 'next/image'
-import Description from './_components/Description'
-import ProductBreadcrumbs from './_components/ProductBreadcrumbs'
-import AddToCart from './_components/AddToCart'
+import { Phone } from 'lucide-react'
+import { getLocalOrder } from '@/app/_actions/localOrder'
 import { getSession } from '@/app/_actions/user'
 import { LocalOrderProps, PageSearchParams, SessionProps } from '@/lib/schema'
+import { cn, currentProduct } from '@/lib/utils'
+import ProductBreadcrumbs from './_components/ProductBreadcrumbs'
+import Description from './_components/Description'
+import AddToCart from './_components/AddToCart'
 import Fallback from '@/components/ui/Fallback'
-import { getLocalOrder } from '@/app/_actions/localOrder'
-import type { Metadata, ResolvingMetadata } from 'next'
+import ProductCard from '@/components/ui/ProductCard'
+import { CATEGORIES, PRODUCTS } from '@/data'
 
-type Props = {
-  searchParams: PageSearchParams
-}
+type Props = { searchParams: PageSearchParams }
 
-export async function generateMetadata(
-  { searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const id = searchParams.id
 
   return {
@@ -54,16 +50,10 @@ export default async function Product({ searchParams }: Props) {
     .filter(category =>
       category.id === Number(product.categoryId))[0].slug}/`
 
-  const currentProduct = (item: any) => {
-    return PRODUCTS
-      .filter(product =>
-        product.id === Number(item.productId))[0]
-  }
-
   return (
-    <section className=''>
+    <>
       <Suspense fallback={<Fallback />}>
-        <div className="wrapper px-3 py-5">
+        <div className="wrapper">
 
           <ProductBreadcrumbs
             categoryHref={categoryHref}
@@ -71,22 +61,22 @@ export default async function Product({ searchParams }: Props) {
             title={product.title}
           />
 
-          <section className='mt-4 flex flex-col lg:flex-row gap-4'>
-            <div className='p-4 w-full lg:w-3/4 bg-white rounded-xl flex flex-col md:flex-row gap-4 shadow-md'>
-              <div className='flex flex-col md:flex-row gap-4'>
+          <section className='mt-4 flex flex-col lg:flex-row gap-3'>
+            <div className='p-3 bg-white rounded flex flex-col md:flex-row gap-3 shadow'>
+              <div>
                 <Image
                   src={product.images[0]}
                   alt={"Img"}
                   width={408}
                   height={100}
-                  className="w-full object-contain bg-gray-200 rounded-lg"
+                  className="w-full object-contain bg-gray-200 rounded"
                   priority
                   quality={100}
                 />
               </div>
 
               <div className='md:min-w-[300px]'>
-                <h2 className='font-bold text-3xl'>{product.title}</h2>
+                <h1 className='font-bold text-3xl'>{product.title}</h1>
                 <small>EAN: {product.code}</small>
 
                 {product.sizeOptions.length > 0 &&
@@ -100,7 +90,7 @@ export default async function Product({ searchParams }: Props) {
                             id: currentProduct(size).id
                           }
                         }}
-                        className={cn("w-full flex items-center justify-center p-2 rounded-md",
+                        className={cn("w-full flex items-center justify-center p-2 rounded",
                           product.id === size.productId ? "bg-green-600 text-white font-bold" : "bg-gray-200"
                         )}>
                         {size.size}
@@ -114,7 +104,7 @@ export default async function Product({ searchParams }: Props) {
               </div>
             </div>
 
-            <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-4 rounded-xl shadow-md'>
+            <div className='w-full md:w-1/4 min-w-[300px] bg-white h-fit p-3 rounded shadow'>
               {product.isAvailable ?
                 <AddToCart
                   isAvailable={product.isAvailable}
@@ -126,12 +116,11 @@ export default async function Product({ searchParams }: Props) {
                 /> :
                 <button
                   type='button'
-                  className="w-full bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg">
+                  className="w-full bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded">
                   No product
                 </button>
               }
-              <a
-                className='mt-4 flex gap-4 justify-center items-center bg-gray-100 w-full p-3 rounded-lg'
+              <a className='mt-3 flex gap-4 justify-center items-center bg-gray-100 w-full p-3 rounded'
                 href="tel:+380672785349">
                 <Phone
                   size={18}
@@ -143,38 +132,21 @@ export default async function Product({ searchParams }: Props) {
 
           {product.analogues.length > 0 &&
             <>
-              <b className='block mt-5'>Analogues</b>
-              <div className='mt-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
+              <b className='block mt-3'>Analogues</b>
+
+              <div className='productsGrid'>
                 {product.analogues.map(analogue => (
-                  <div key={analogue.id} className='w-full'>
-                    <Link
-                      href={{
-                        pathname: categoryHref + currentProduct(analogue).slug + currentProduct(analogue).code, query: {
-                          id: currentProduct(analogue).id
-                        }
-                      }}
-                      className="flex flex-col h-full bg-white p-2 md:p-4 rounded-xl w-full shadow-md">
-                      <Image
-                        src={currentProduct(analogue).images[0]}
-                        alt={"Img"}
-                        width={408}
-                        height={100}
-                        className="w-full object-contain bg-gray-200 rounded-lg"
-                        priority
-                        quality={100}
-                      />
-
-                      <h3 className='mt-3 font-bold'>{currentProduct(analogue).title}</h3>
-                      <p className='font-bold'>{currentProduct(analogue).price} zl</p>
-                    </Link>
-
-                  </div>
+                  <ProductCard
+                    key={analogue.id}
+                    categoryHref={categoryHref}
+                    item={currentProduct(analogue)}
+                  />
                 ))}
               </div>
             </>
           }
         </div>
       </Suspense>
-    </section>
+    </>
   )
 }

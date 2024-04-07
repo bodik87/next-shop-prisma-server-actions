@@ -1,10 +1,10 @@
 "use client"
 
-import { createLocalOrder } from '@/app/_actions/localOrder'
-import { cn } from '@/lib/utils'
 import React, { ChangeEvent, useState } from 'react'
 import { useFormStatus } from 'react-dom'
-import { ShoppingBag, Check } from 'lucide-react'
+import { ShoppingBag } from 'lucide-react'
+import { createLocalOrder } from '@/app/_actions/localOrder'
+import { cn } from '@/lib/utils'
 
 type Props = {
   isAvailable: boolean
@@ -47,44 +47,45 @@ export default function AddToCart({ isAvailable, userEmail, productId, price, in
       <>
         <p className='mt-2 text-3xl font-bold'>{total} zl</p>
 
-        <div className='mt-4 flex gap-2 items-center'>
+        <div className='mt-4 flex gap-4 items-center'>
 
-          {!inCart && (<div className='flex border-2 rounded-xl'>
-            <button
-              disabled={quantity === 1}
-              onClick={() => setQuantity(quantity - 1)}
-              className='w-12 h-12 aspect-square font-bold'>
-              -
-            </button>
+          {!inCart && (
+            <div className='w-full flex border-2 rounded'>
+              <button
+                disabled={quantity === 1}
+                onClick={() => setQuantity(quantity - 1)}
+                className='w-12 h-12 aspect-square font-bold'>
+                -
+              </button>
 
-            <input
-              type='number'
-              min={1}
-              step={1}
-              value={quantity}
-              onPaste={(e) => {
-                e.preventDefault()
-                return false
-              }}
-              onBlur={() => {
-                if (quantity === null || quantity === 0) {
-                  setError("Min 1")
-                  setQuantity(1)
-                }
-                if (quantity > 100) {
-                  setError("Max 100")
-                  setQuantity(100)
-                }
-              }}
-              onChange={handleChange}
-              className='w-full text-center font-bold px-10 border-x-2 flex items-center justify-center' />
+              <input
+                type='number'
+                min={1}
+                step={1}
+                value={quantity}
+                onPaste={(e) => {
+                  e.preventDefault()
+                  return false
+                }}
+                onBlur={() => {
+                  if (quantity === null || quantity === 0) {
+                    setError("Min 1")
+                    setQuantity(1)
+                  }
+                  if (quantity > 100) {
+                    setError("Max 100")
+                    setQuantity(100)
+                  }
+                }}
+                onChange={handleChange}
+                className='w-full text-center font-bold px-10 border-x-2 flex items-center justify-center' />
 
-            <button
-              onClick={() => setQuantity(quantity + 1)}
-              className='w-12 h-12 aspect-square font-bold'>
-              +
-            </button>
-          </div>
+              <button
+                onClick={() => setQuantity(quantity + 1)}
+                className='w-12 h-12 aspect-square font-bold'>
+                +
+              </button>
+            </div>
           )}
 
           <form action={action} className={cn('border-2 border-transparent', inCart && "w-full")}
@@ -106,7 +107,7 @@ function SubmitButton({ isAvailable, inCart }: { isAvailable: boolean, inCart: b
     <button
       type='submit'
       disabled={pending || !isAvailable || inCart}
-      className={cn("h-12 bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg",
+      className={cn("h-12 bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded",
         inCart ? "w-full" : "w-12 aspect-square")}
     >
       {inCart ? "Already in cart" : <ShoppingBag />}

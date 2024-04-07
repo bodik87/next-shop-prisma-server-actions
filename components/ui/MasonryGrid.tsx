@@ -10,7 +10,7 @@ const breakpointColumnsObj = {
 
 export default function MasonryGrid({ children }: { children: React.ReactNode }) {
   return (
-    <div className="p-5">
+    <div className="-mt-3 p-5">
       <Masonry
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"

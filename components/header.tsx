@@ -14,7 +14,7 @@ export default async function Header() {
 
  return (
   <HeaderContainer>
-   <div className="wrapper px-3 py-4 flex items-center justify-between gap-4">
+   <div className="wrapper py-4 flex items-center justify-between gap-4">
     <Link href={`/`} className='flex items-center gap-4'>
      <b className='text-xl whitespace-nowrap'>Shop</b>
     </Link>
@@ -34,7 +34,7 @@ export default async function Header() {
      >
       <User className={cn("", session?.email && "stroke-green-800")} />
      </Link>
-     <Link href={'/cart'} className='relative'>
+     <Link href={'/cart'} className='relative mr-1'>
       <ShoppingBag />
       {order && (
        <span
@@ -52,7 +52,7 @@ export default async function Header() {
     </div>
    </div>
 
-   <div className='wrapper px-3 flex items-center gap-4 relative'>
+   <div className='wrapper pb-4 flex items-center gap-4 relative'>
     <Categories />
    </div>
   </HeaderContainer>

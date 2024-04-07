@@ -36,10 +36,8 @@ export default function HeaderContainer({ children }: Props) {
     </div>
    </section>} */}
 
-   <header className={`sticky top-0 ${show && !scrollUp && "-translate-y-[110%]"} ${show && "shadow-md"} bg-gray-200 transition-all duration-300 z-20`}>
-    <div className='wrapper pb-4'>
-     {children}
-    </div>
+   <header className={`sticky top-0 ${show && !scrollUp && "-translate-y-[110%]"} ${show && "shadow-xl"} bg-gray-200 transition-all duration-300 z-20`}>
+    {children}
    </header>
   </>
  )

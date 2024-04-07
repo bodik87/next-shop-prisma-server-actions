@@ -8,7 +8,6 @@ type Props = {}
 
 export default function LoginForm({ }: Props) {
  const [state, formAction] = useFormState(enter, null)
- const { pending } = useFormStatus()
 
  return (
   <form
@@ -20,24 +19,32 @@ export default function LoginForm({ }: Props) {
     name="email"
     placeholder="Email"
     required
-    className='w-full pl-4 pr-10 py-4 rounded-lg border outline-none'
+    className='w-full pl-4 pr-10 py-4 rounded border outline-none'
    />
    <input
     type="password"
     name="password"
     placeholder="Password"
     required
-    className='w-full pl-4 pr-10 py-4 rounded-lg border outline-none'
+    className='w-full pl-4 pr-10 py-4 rounded border outline-none'
    />
    <small className='font-bold text-red-500'>{state?.message}</small>
 
-   <button
-    type='submit'
-    className="w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg"
-    disabled={pending}
-   >
-    Enter
-   </button >
+   <SubmitButton />
   </form>
+ )
+}
+
+function SubmitButton() {
+ const { pending } = useFormStatus()
+
+ return (
+  <button
+   type='submit'
+   disabled={pending}
+   className="w-full bg-green-600 disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded"
+  >
+   Enter
+  </button>
  )
 }

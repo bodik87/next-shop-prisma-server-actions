@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { decrypt, encrypt } from "@/lib/crypt";
 import { LocalOrderProps, ProductForOrderProps } from "@/lib/schema";
 
-export async function incrementLocalOrder(state: any, formData: FormData) {
+export async function incrementLocalOrder(formData: FormData) {
   const id = formData.get("id") as string;
   try {
     const existedLocalOrder = cookies().get("order")?.value;
@@ -45,7 +45,7 @@ export async function incrementLocalOrder(state: any, formData: FormData) {
   }
 }
 
-export async function decrementLocalOrder(state: any, formData: FormData) {
+export async function decrementLocalOrder(formData: FormData) {
   const id = formData.get("id") as string;
   try {
     const existedLocalOrder = cookies().get("order")?.value;

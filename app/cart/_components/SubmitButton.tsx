@@ -11,7 +11,7 @@ export default function SubmitButton({ }: Props) {
     <button
       type='submit'
       disabled={pending}
-      className="mt-4 w-full bg-black disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded-lg"
+      className="mt-3 w-full bg-black disabled:bg-gray-400 text-white font-bold text-lg flex items-center justify-center px-2 py-4 rounded"
     >
       {pending ? "Loading..." : "Buy"}
     </button>

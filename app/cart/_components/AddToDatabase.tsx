@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import { addOrderToDatabase } from '@/app/_actions/orders'
 import { LocalOrderProps } from '@/lib/schema'

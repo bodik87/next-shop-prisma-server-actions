@@ -1,12 +1,10 @@
 import React, { Suspense } from 'react'
-import Link from 'next/link'
-import Image from "next/image";
-import { CATEGORIES, PRODUCTS } from '@/data'
-import { cn } from '@/lib/utils';
-import CategoryBreadcrumbs from './_components/CategoryBreadcrumbs';
-import { PageSearchParams } from '@/lib/schema';
-import Fallback from '@/components/ui/Fallback';
 import type { Metadata, ResolvingMetadata } from 'next'
+import { PageSearchParams } from '@/lib/schema';
+import { CATEGORIES, PRODUCTS } from '@/data'
+import CategoryBreadcrumbs from './_components/CategoryBreadcrumbs';
+import Fallback from '@/components/ui/Fallback';
+import ProductCard from '@/components/ui/ProductCard';
 
 type Props = { searchParams: PageSearchParams }
 
@@ -35,10 +33,10 @@ export default function Category({ searchParams }: Props) {
       category.id === Number(id))[0].slug}/`
 
   return (
-    <section className=''>
+    <>
       <Suspense fallback={<Fallback />}>
 
-        <div className="wrapper px-3 pt-5 pb-3">
+        <div className="wrapper">
           <CategoryBreadcrumbs id={id} />
 
           <h2 className='mt-4'>
@@ -47,43 +45,19 @@ export default function Category({ searchParams }: Props) {
           </h2>
         </div>
 
-        <div className="wrapper pb-5">
-          <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 md:gap-3'>
-            {PRODUCTS.filter(product => product.categoryId === Number(id)).map(
+        <div className="wrapper productsGrid">
+          {PRODUCTS
+            .filter(product => product.categoryId === Number(id))
+            .map(
               (el) =>
-                <div key={el.id} className='w-full'>
-                  <Link
-                    href={{ pathname: categoryHref + el.slug + el.code, query: { id: el.id } }}
-                    className={cn("flex flex-col h-full p-1 rounded-xl w-full shadow-md md:hover:shadow-xl transition-all relative",
-                      el.isAvailable ? "bg-white" : "bg-gray-100")}
-                  >
-                    <Image
-                      src={el.images[0]}
-                      alt={"Img"}
-                      width={408}
-                      height={100}
-                      className={cn("w-full object-contain bg-gray-200 rounded-lg",
-                        !el.isAvailable && "opacity-50")}
-                      priority
-                      quality={100}
-                    />
-
-                    {!el.isAvailable &&
-                      <div className='absolute top-1 left-1 p-4 rounded-tl-lg rounded-br-lg w-fit bg-black/80 text-white text-sm font-semibold'>
-                        Is not available
-                      </div>}
-
-                    <h3 className='mt-2 px-2 font-bold lg:text-lg xl:text-base'>{el.title}</h3>
-
-                    <div className='mb-1 px-2 flex justify-between items-end'>
-                      <p className='font-bold lg:text-lg xl:text-base'>{el.price} zl</p>
-                    </div>
-                  </Link>
-                </div>
+                <ProductCard
+                  key={el.id}
+                  categoryHref={categoryHref}
+                  item={el}
+                />
             )}
-          </div>
         </div>
       </Suspense>
-    </section >
+    </ >
   )
 }
